@@ -23,7 +23,7 @@ export const hdHyundaiHeavy: CaseStudy = {
   ],
   kpis: [
     { value: '15.9', unit: '%', label: "'26 1H 영업이익률 ('21년 -9.6%)" },
-    { value: '2.55', unit: '억$', label: "'26 LNG선 평균 수주선가 · 13척" },
+    { value: '2.55', unit: '억 달러', label: "'26 LNG선 평균 수주선가 · 13척" },
     { value: '6', unit: '개사', label: 'Trading Comps Peer (국내 3 · 글로벌 3)' },
     { value: '2', unit: '개', label: 'Valuation 방법론 (Comps · DCF)' },
   ],

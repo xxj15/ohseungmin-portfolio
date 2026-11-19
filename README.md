@@ -26,8 +26,8 @@ npm test         # 빌드 후 Playwright 테스트 (설치된 Chrome 사용)
 | 자료 | 파일 위치 | 데이터 |
 |---|---|---|
 | 리포트 PDF | `public/reports/<파일>.pdf` | `site.ts`의 `research[].pdf: '/reports/<파일>.pdf'`. 케이스 상세에도 보이려면 해당 케이스 파일의 DELIVERABLE 사실에 `links: [{ text: '리포트 18p (PDF) ↗', href: '/reports/<파일>.pdf' }]`(매크로는 링크 2개), 한화솔루션은 결과 블록 `pdf`에도 |
-| 이력서 PDF | `public/<파일>.pdf` | `site.ts`의 `contact.resumePdf: '/<파일>.pdf'` → 상단 메뉴·연락처에 버튼 |
-| 이메일 · LinkedIn | — | `site.ts`의 `contact.email`, `contact.linkedin` → 연락처 섹션 등장 |
+| 이력서 PDF | `public/<파일>.pdf` | `site.ts`의 `contact.resumePdf: '/<파일>.pdf'` → 상단 메뉴 버튼 + 소개의 연락처 묶음 |
+| 이메일 · LinkedIn | — | `site.ts`의 `contact.email`, `contact.linkedin` → 소개 섹션의 연락처 묶음에 표시 |
 
 `tests/data.spec.ts`의 "site 현재 상태: 자료 없음" 테스트는 자료를 넣으면 실패하므로 함께 지우거나 고칩니다.
 

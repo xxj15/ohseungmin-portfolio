@@ -8,7 +8,7 @@ export const site = {
   name: '오승민',
   eyebrow: '오승민 · Strategy & Financial Research',
   heroLines: ['<b>산업 구조</b>를 분석하고', '<b>기업가치</b>로 결론 내는 전략 분석가'] as Rich[],
-  heroFacts: '서강대학교 · Sogang Wise Investment Club 38기 · RCI Financial Credit Risk 인턴 · SG Fenero',
+  heroFacts: '서강대학교 · Sogang Wise Investment Club 38기 · RCI Financial Credit Risk 인턴 · SG Fenero IM 프로젝트',
   /** 경력 띠: 누르면 해당 경험으로 이동. SWIC는 케이스가 둘(한화솔루션 · 매크로)이라 리서치 섹션으로 보낸다. */
   experience: [
     { name: 'RCI Financial', href: '/work/rci-financial/' },

@@ -9,7 +9,7 @@ export const moonSunPower: CaseStudy = {
     org: 'MOON, SUN, POWER',
     role: '프롬프트 엔지니어링 · 서비스 운영',
     title: 'AI 맞춤형 문해력 학습 플랫폼 기획·운영',
-    summary: '사용자가 입력한 관심사로 지문과 독해 문제를 생성하는 웹 서비스. Few-shot 프롬프트를 설계하고 출시 후 1년간 운영했습니다.',
+    summary: '관심사를 입력하면 지문과 독해 문제를 생성하는 웹 서비스에서 Few-shot 프롬프트를 설계하고, 출시 후 1년간 운영했습니다.',
     outcome: '월 최대 방문자 9,400명',
     outcomeSub: '교내 대회 AI/SW 특별상 · 인기상',
   },
@@ -86,7 +86,7 @@ export const moonSunPower: CaseStudy = {
         {
           kind: 'cards',
           items: [
-            { key: 'PROMPT', title: '프롬프트 설계 자원', body: '팀에 담당자가 없어 방향 변경 위기. 전문서적으로 생성형 AI 원리를 학습하고 Few-shot 기법으로 지문 · 문제 생성 기준 구체화' },
+            { key: 'PROMPT', title: '프롬프트 설계 자청', body: '팀에 담당자가 없어 방향 변경 위기. 전문서적으로 생성형 AI 원리를 학습하고 Few-shot 기법으로 지문 · 문제 생성 기준 구체화' },
             { key: 'QUALITY', title: '정확성 · 객관성 개선', body: '생성 결과를 반복 검토하며 프롬프트 수정, 지문과 문항의 정확도 개선' },
             { key: 'TEAM', title: '피드백 Ground Rule', body: '친분으로 비판적 피드백이 어려운 문제를 발견, 업데이트마다 구체적 피드백을 주고받는 규칙 도입' },
             { key: 'OPERATION', title: '출시 후 운영', body: '어린이날 이벤트, 시즌별 콘텐츠 기획 · 업데이트로 재방문 유도' },

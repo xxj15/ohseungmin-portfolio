@@ -1,6 +1,11 @@
 ---
 import { site } from '../../data/site';
+import { contactItems, hasContact } from '../../lib/content';
+import { withBase } from '../../lib/paths';
 import SectionHead from './SectionHead.astro';
+
+const contacts = contactItems(site.contact);
+const showContact = hasContact(site.contact);
 ---
 
 <section id="about" class="sec">
@@ -23,6 +28,29 @@ import SectionHead from './SectionHead.astro';
           </dl>
         </div>
       ))}
+      {showContact && (
+        <div data-reveal data-contact>
+          <h3>연락처</h3>
+          <dl>
+            {contacts.map((item) => (
+              <div class="item">
+                <dt>{item.label}</dt>
+                <dd>
+                  <a class="link" href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel="noopener">
+                    {item.text} <span aria-hidden="true">↗</span>
+                  </a>
+                </dd>
+              </div>
+            ))}
+            {site.contact.resumePdf && (
+              <div class="item">
+                <dt>이력서</dt>
+                <dd><a class="link" href={withBase(site.contact.resumePdf)} target="_blank" rel="noopener">이력서 PDF 받기 <span aria-hidden="true">↓</span></a></dd>
+              </div>
+            )}
+          </dl>
+        </div>
+      )}
     </div>
   </div>
 </section>
@@ -33,6 +61,9 @@ import SectionHead from './SectionHead.astro';
   .item { display: grid; grid-template-columns: 120px 1fr; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
   dt { color: var(--ink-3); font-size: 14px; }
   dd small { display: block; color: var(--ink-3); font-size: 13px; margin-top: 2px; }
+  .link { overflow-wrap: anywhere; background: linear-gradient(var(--navy), var(--navy)) 0 100% / 0 1px no-repeat; transition: color 0.2s, background-size 0.24s; }
+  .link:hover, .link:focus-visible { color: var(--navy); background-size: 100% 1px; }
+  .link span { color: var(--ink-3); }
   @media (max-width: 900px) {
     .lists { grid-template-columns: 1fr; gap: 40px; margin-top: 32px; }
     .item { grid-template-columns: 88px 1fr; }

@@ -4,15 +4,13 @@ import { withBase } from '../lib/paths';
 interface Props {
   showResume: boolean;
   resumeHref?: string;
-  showContact: boolean;
 }
-const { showResume, resumeHref, showContact } = Astro.props;
+const { showResume, resumeHref } = Astro.props;
 const items = [
   { label: 'Work', href: '/#work' },
   { label: 'Approach', href: '/#approach' },
   { label: 'Research', href: '/#research' },
   { label: 'About', href: '/#about' },
-  ...(showContact ? [{ label: 'Contact', href: '/#contact' }] : []),
 ];
 ---
 

@@ -34,11 +34,10 @@ test('자료를 데이터에 넣으면 연락처·이력서·리포트 링크가
     const html = (p: string) => readFileSync(join(dir, 'dist', p), 'utf8');
 
     const home = html('index.html');
-    expect(home).toContain('id="contact"');
+    expect(home).toContain('data-contact');
     expect(home).toContain('href="mailto:test@example.com"');
     expect(home).toContain('href="https://www.linkedin.com/in/test"');
-    expect(home.match(/href="\/resume\.pdf"/g)?.length).toBe(2); // 내비 버튼 + 연락처 버튼
-    expect(home).toContain('href="/#contact"');
+    expect(home.match(/href="\/resume\.pdf"/g)?.length).toBe(2); // 내비 버튼 + 소개의 연락처 묶음
     expect(home).toContain('href="/reports/hanwha.pdf"');
 
     const macro = html('work/swic-macro/index.html');

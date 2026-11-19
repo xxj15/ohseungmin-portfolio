@@ -2,12 +2,23 @@ import { expect, test } from '@playwright/test';
 
 const LINKEDIN = 'https://www.linkedin.com/in/seungmin-oh-8ab8a3351/';
 
-test('LinkedIn: 연락처 섹션과 내비 Contact 노출, 이력서 버튼은 여전히 숨김', async ({ page }) => {
+test('연락처는 소개 섹션 안 "연락처" 묶음에 있고, 따로 된 Contact 섹션·메뉴는 없음', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('#contact')).toHaveCount(1);
-  await expect(page.locator('#contact a', { hasText: 'LinkedIn' })).toHaveAttribute('href', LINKEDIN);
-  await expect(page.locator('nav a', { hasText: 'Contact' })).toHaveAttribute('href', '/#contact');
+  const group = page.locator('#about [data-contact]');
+  await expect(group.locator('h3')).toHaveText('연락처');
+  await expect(group.locator('a', { hasText: 'linkedin.com/in/seungmin-oh-8ab8a3351' })).toHaveAttribute('href', LINKEDIN);
+  await expect(page.locator('#contact')).toHaveCount(0);
+  await expect(page.locator('nav a', { hasText: 'Contact' })).toHaveCount(0);
   await expect(page.getByText('이력서 PDF')).toHaveCount(0);
+});
+
+test('문구 점검 반영', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByText('RCI Financial Credit Risk 인턴 · SG Fenero IM 프로젝트')).toBeVisible();
+  await page.goto('/work/moon-sun-power/');
+  await expect(page.getByText('프롬프트 설계 자청')).toBeVisible();
+  await page.goto('/work/hd-hyundai-heavy/');
+  await expect(page.locator('[data-kpi]').nth(1)).toContainText('억 달러');
 });
 
 test('Experience 띠: 항목마다 해당 경험으로 이동', async ({ page }) => {
