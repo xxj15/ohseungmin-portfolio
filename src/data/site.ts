@@ -8,7 +8,7 @@ export const site = {
   name: '오승민',
   eyebrow: 'Strategy & Financial Research',
   heroLines: ['<b>산업 구조</b>를 분석하고', '<b>기업가치</b>로 결론 내는 전략 분석가'] as Rich[],
-  heroIntro: '산업분석 · 실적 추정 · Valuation으로 투자의견을 내는 Equity Research, 통화정책과 환율을 다루는 거시경제 분석, 금융기관 Credit Risk 실무.',
+  heroIntro: '산업분석 · 실적 추정 · Valuation · 거시경제 분석 · Credit Risk',
   credentials: [
     { label: 'Education', value: '서강대학교', sub: '유럽문화학과 · 경영학 복수전공' },
     { label: 'Research', value: 'Sogang Wise Investment Club 38기', sub: 'Equity Research · Multi-Asset Macro' },
@@ -19,25 +19,25 @@ export const site = {
   approach: [
     {
       no: '01', en: 'Define', title: '문제 정의',
-      desc: '현상을 측정 가능한 질문으로 바꾸고, 영향이 전달되는 경로를 나눈다',
+      desc: '분석 질문 설정 · 전달 경로 분해',
       example: '관세 불확실성을 <b>물가 상방 · 경기 하방</b> 두 압력으로 분해',
       source: '한국은행 통화정책 경시대회',
     },
     {
       no: '02', en: 'Hypothesize', title: '가설 수립',
-      desc: '결론이 될 가설을 먼저 세우고, 검증할 핵심 변수를 정한다',
+      desc: '투자 가설 · 핵심 변수 선정',
       example: '미국 내 유일한 <b>잉곳-to-모듈 수직계열화</b>를 핵심 투자 가설로 설정',
       source: '한화솔루션 Equity Research',
     },
     {
       no: '03', en: 'Analyze', title: '데이터 검증',
-      desc: '공시 · 통계 · 대체 데이터로 가설을 수치로 확인한다',
+      desc: '공시 · 통계 · 대체 데이터로 수치 검증',
       example: '비공시 TPO 단가를 ABS 담보풀로 역산(<b>월 약 $184</b>), PVC 판매량은 회귀식으로 추정',
       source: '한화솔루션 Equity Research',
     },
     {
       no: '04', en: 'Recommend', title: '결론 도출',
-      desc: 'Valuation과 시나리오로 투자의견과 실행안을 제시한다',
+      desc: 'Valuation · 투자의견 제시',
       example: 'Peer 3사 EV/EBITDA 평균 10.3배 적용, <b>목표주가 43,300원 · BUY</b>',
       source: '한화솔루션 Equity Research',
     },
