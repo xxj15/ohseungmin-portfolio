@@ -6,10 +6,10 @@ export const swicMacro: CaseStudy = {
   name: 'SWIC Macro',
   card: {
     category: 'MACRO RESEARCH · 금리·외환',
-    org: 'SWIC MULTI-ASSET MACRO',
+    org: 'SWIC Multi-Asset Macro',
     role: '개인 리포트 2건 작성 · 발표',
     title: '미국 통화정책 전망과 원화 자산군 리서치',
-    summary: '금리 인하와 QT 병행 시 금리 커브, WGBI 편입과 반도체 수출이 원화에 미치는 영향을 분석했습니다.',
+    summary: '금리 인하 · QT 병행 시 미국 금리 커브, WGBI 편입 · 반도체 수출이 원화에 미치는 영향 분석',
     outcome: '원화 BUY · 불 스티프닝 전망',
   },
   eyebrow: 'Macro Research · 금리 · 외환 · 2026',

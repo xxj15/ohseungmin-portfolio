@@ -37,7 +37,7 @@ const showContact = hasContact(site.contact);
                 <dt>{item.label}</dt>
                 <dd>
                   <a class="link" href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel="noopener">
-                    {item.text} <span aria-hidden="true">↗</span>
+                    {item.text}{item.href.startsWith('http') && <span aria-hidden="true"> ↗</span>}
                   </a>
                 </dd>
               </div>
@@ -57,10 +57,11 @@ const showContact = hasContact(site.contact);
 
 <style>
   .lists { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 64px; }
-  h3 { font-size: 13px; letter-spacing: 0.2em; color: var(--ink-3); font-weight: 500; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  h3 { font-size: 13px; letter-spacing: 0.04em; color: var(--ink-3); font-weight: 500; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
   .item { display: grid; grid-template-columns: 120px 1fr; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
   dt { color: var(--ink-3); font-size: 14px; }
-  dd small { display: block; color: var(--ink-3); font-size: 13px; margin-top: 2px; }
+  dd { font-weight: 600; }
+  dd small { display: block; color: var(--ink-3); font-size: 13px; margin-top: 2px; font-weight: 400; }
   .link { overflow-wrap: anywhere; background: linear-gradient(var(--navy), var(--navy)) 0 100% / 0 1px no-repeat; transition: color 0.2s, background-size 0.24s; }
   .link:hover, .link:focus-visible { color: var(--navy); background-size: 100% 1px; }
   .link span { color: var(--ink-3); }

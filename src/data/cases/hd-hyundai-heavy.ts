@@ -9,7 +9,7 @@ export const hdHyundaiHeavy: CaseStudy = {
     org: 'HD현대중공업',
     role: '스터디 조직·팀장 · 단독 분석',
     title: '고부가 선박 수주잔고 기반 실적 전망과 Valuation',
-    summary: '고선가 LNG선 수주분의 매출 인식 시점과 Peer 대비 수익성 개선 속도를 분석하고, Trading Comps와 DCF 모델을 직접 구축했습니다.',
+    summary: '고선가 LNG선 수주분의 매출 인식 시점과 Peer 대비 수익성 개선 속도 분석, Trading Comps · DCF 모델 직접 구축',
     outcome: 'Comps · DCF 밸류에이션 모델 구축',
   },
   eyebrow: 'Industry Research · 조선 · 2026 여름',

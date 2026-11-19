@@ -6,7 +6,7 @@ test('연락처는 소개 섹션 안 "연락처" 묶음에 있고, 따로 된 Co
   await page.goto('/');
   const group = page.locator('#about [data-contact]');
   await expect(group.locator('h3')).toHaveText('연락처');
-  await expect(group.locator('a', { hasText: 'linkedin.com/in/seungmin-oh-8ab8a3351' })).toHaveAttribute('href', LINKEDIN);
+  await expect(group.locator('a', { hasText: '프로필 보기' })).toHaveAttribute('href', LINKEDIN);
   await expect(page.locator('#contact')).toHaveCount(0);
   await expect(page.locator('nav a', { hasText: 'Contact' })).toHaveCount(0);
   await expect(page.getByText('이력서 PDF')).toHaveCount(0);

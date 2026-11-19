@@ -21,7 +21,7 @@ test('문구 규칙 위반 없음', () => {
 test('핵심 수치', () => {
   const h = cases[0];
   expect(h.kpis.map((k) => k.value)).toEqual(['43,300', '+30', '1조 7,361', '10.3']);
-  expect(cases[4].card.org).toBe('CONFIDENTIAL');
+  expect(cases[4].card.org).toBe('Confidential');
   expect(cases[5].card.outcome).toBe('심리지표 VIX → NSI 교체 제안 · 채택');
 });
 

@@ -28,7 +28,7 @@ test('이력서는 없어서 숨김, 리포트 PDF 3개는 링크', async ({ pag
 
 test('소개 학력', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('#about')).toContainText('유럽문화학과 (독일어권 심화) · 경영학 복수전공');
+  await expect(page.locator('#about')).toContainText('유럽문화학과 (독일어심화) · 경영학 복수전공');
 });
 
 test('모든 섹션 배경 흰색', async ({ page }) => {

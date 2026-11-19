@@ -9,7 +9,7 @@ export const bokCompetition: CaseStudy = {
     org: '한국은행 경시대회',
     role: '무역·환율 경로 분석·작성',
     title: '미국 관세정책 불확실성의 국내 경제 파급효과 분석',
-    summary: '불확실성을 물가 상방 압력과 경기 하방 압력 두 경로로 분해하고, 한국은행 경제통계로 가격 전가 구조를 검증했습니다.',
+    summary: '관세 불확실성을 물가 상방 · 경기 하방 두 압력으로 분해, 한국은행 경제통계로 가격 전가 구조 검증',
     outcome: '심리지표 VIX → NSI 교체 제안 · 채택',
   },
   eyebrow: 'Economic Research · 거시경제 · 2025',

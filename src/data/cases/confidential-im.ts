@@ -7,10 +7,10 @@ export const confidentialIm: CaseStudy = {
   name: 'Confidential',
   card: {
     category: 'M&A ADVISORY · 미용의료기기',
-    org: 'CONFIDENTIAL',
+    org: 'Confidential',
     role: 'IM 작성 참여 · 산업분석, 장표 제작',
     title: '미용의료기기 기업 IM의 산업분석과 Investment Highlights 작성',
-    summary: 'EBD 4개 기술군으로 산업 구조를 정리하고, Peer 대비 재고·현금전환 지표를 비교해 투자 포인트를 도출했습니다.',
+    summary: 'EBD 4개 기술군으로 산업 구조 정리, Peer 대비 재고 · 현금전환 지표를 비교해 투자 포인트 도출',
     outcome: 'Investment Highlights 1·4·5번 작성',
   },
   eyebrow: 'M&A Advisory · 미용의료기기 · 2025',
@@ -32,7 +32,7 @@ export const confidentialIm: CaseStudy = {
     {
       label: 'NOTE',
       title: '공개 범위',
-      parts: [{ kind: 'notice', text: '고객사 보호를 위해 회사명, 장표 원본, 세부 수치는 공개하지 않습니다. 수행한 분석의 구조와 접근 방식만 정리했습니다.' }],
+      parts: [{ kind: 'notice', text: '고객사 보호를 위해 회사명 · 장표 원본 · 세부 수치는 비공개. 분석 구조와 접근 방식만 정리' }],
     },
     {
       label: 'SITUATION',

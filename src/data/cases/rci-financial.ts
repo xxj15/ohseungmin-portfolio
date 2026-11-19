@@ -6,10 +6,10 @@ export const rciFinancial: CaseStudy = {
   name: 'RCI Financial',
   card: {
     category: 'CREDIT RISK · 자동차금융',
-    org: 'RCI FINANCIAL',
+    org: 'RCI Financial',
     role: 'Credit Risk 인턴 · 프로젝트 일정 관리',
     title: '프랑스 본사 리스크 규정 현지화 프로젝트 관리',
-    summary: '부서별 절차서 작성 마일스톤을 수립하고 운영본부 주간 회의를 주관했으며, Local Risk Committee에 진행 현황을 보고했습니다.',
+    summary: '부서별 절차서 작성 마일스톤 수립, 운영본부 주간 회의 주관, Local Risk Committee에 진행 현황 보고',
     outcome: 'Local Procedure 7건 기한 내 제정',
   },
   eyebrow: 'Credit Risk · 자동차금융 · 인턴십',

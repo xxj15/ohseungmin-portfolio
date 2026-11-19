@@ -34,7 +34,7 @@ export const site = {
     {
       heading: '학력 · 활동',
       rows: [
-        { label: '학력', value: '서강대학교', sub: '유럽문화학과 (독일어권 심화) · 경영학 복수전공' },
+        { label: '학력', value: '서강대학교', sub: '유럽문화학과 (독일어심화) · 경영학 복수전공' },
         { label: '금융학회', value: 'Sogang Wise Investment Club 38기', sub: 'Multi-Asset Macro · Equity Research' },
         { label: '스터디', value: '산업분석 스터디 조직 · 팀장', sub: '2026 여름' },
       ],

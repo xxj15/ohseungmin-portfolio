@@ -26,7 +26,7 @@ test('이전/다음 순환', async ({ page }) => {
 
 test('IM: 비공개 안내', async ({ page }) => {
   await page.goto('/work/confidential-im/');
-  await expect(page.getByText('고객사 보호를 위해 회사명, 장표 원본, 세부 수치는 공개하지 않습니다.', { exact: false })).toBeVisible();
+  await expect(page.getByText('고객사 보호를 위해 회사명 · 장표 원본 · 세부 수치는 비공개', { exact: false })).toBeVisible();
 });
 
 test('빌드 산출물에 IM 회사명 없음', () => {

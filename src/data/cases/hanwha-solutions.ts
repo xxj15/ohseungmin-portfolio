@@ -9,7 +9,7 @@ export const hanwhaSolutions: CaseStudy = {
     org: '한화솔루션',
     role: '단독 작성 · 산업분석, 실적 추정, Valuation',
     title: '미국 태양광 공급망 재편에 따른 실적 추정과 기업가치 평가',
-    summary: 'AMPC 세액공제, 모듈 ASP, 비중국 공급망 점유율을 P×Q로 분해해 FTM 실적을 추정하고, EV/EBITDA로 목표주가를 산출했습니다.',
+    summary: 'AMPC 세액공제 · 모듈 ASP · 비중국 공급망 점유율을 P×Q로 분해해 FTM 실적 추정, EV/EBITDA로 목표주가 산출',
     outcome: '목표주가 43,300원 · BUY',
     outcomeSub: '상승여력 30% (2026.09 기준)',
   },

@@ -6,10 +6,10 @@ export const moonSunPower: CaseStudy = {
   name: 'Moon, Sun, Power',
   card: {
     category: 'STRATEGY · EDTECH',
-    org: 'MOON, SUN, POWER',
+    org: 'Moon, Sun, Power',
     role: '프롬프트 엔지니어링 · 서비스 운영',
     title: 'AI 맞춤형 문해력 학습 플랫폼 기획·운영',
-    summary: '관심사를 입력하면 지문과 독해 문제를 생성하는 웹 서비스에서 Few-shot 프롬프트를 설계하고, 출시 후 1년간 운영했습니다.',
+    summary: '관심사를 입력하면 지문과 독해 문제를 만들어 주는 웹 서비스의 Few-shot 프롬프트 설계, 출시 후 1년간 운영',
     outcome: '월 최대 방문자 9,400명',
     outcomeSub: '교내 대회 AI/SW 특별상 · 인기상',
   },

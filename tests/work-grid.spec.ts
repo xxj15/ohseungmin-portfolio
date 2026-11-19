@@ -8,7 +8,7 @@ test('카드 7개, 순서, 끝 슬래시 링크', async ({ page }) => {
   const hrefs = await cards.evaluateAll((els) => els.map((e) => e.getAttribute('href')));
   expect(hrefs).toEqual(SLUGS.map((s) => `/work/${s}/`));
   await expect(cards.first()).toContainText('목표주가 43,300원 · BUY');
-  await expect(cards.nth(4)).toContainText('CONFIDENTIAL');
+  await expect(cards.nth(4)).toContainText('Confidential');
 });
 
 /** 카드들의 [left, top]을 반올림해 돌려준다. */

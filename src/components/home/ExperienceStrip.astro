@@ -23,7 +23,7 @@ import { withBase } from '../../lib/paths';
   @media (prefers-reduced-motion: reduce) { a { transition: none; } }
   @media (max-width: 900px) {
     .row { flex-direction: column; align-items: flex-start; gap: 12px; }
-    ul { gap: 6px 14px; font-size: 13px; }
-    li + li::before { margin-right: 14px; }
+    ul { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; font-size: 14px; width: 100%; }
+    li + li::before { content: none; }
   }
 </style>

@@ -4,45 +4,73 @@ import type { CaseCard } from '../../data/types';
 interface Props {
   card: CaseCard;
   href: string;
+  /** 목록 번호 (01, 02 …) */
+  no: string;
 }
-const { card, href } = Astro.props;
+const { card, href, no } = Astro.props;
 ---
 
 <a class="card" href={href} data-case-card data-reveal>
-  <p class="meta">{card.category}<b>{card.org}</b></p>
-  <p class="role">ROLE<b>{card.role}</b></p>
+  <div class="top">
+    <span class="no">{no}</span>
+    <span class="cat">{card.category}</span>
+    <span class="arrow" aria-hidden="true">→</span>
+  </div>
+  <p class="org">{card.org}<span>{card.role}</span></p>
   <h3>{card.title}</h3>
   <p class="sum">{card.summary}</p>
   <div class="outcome">
-    <p class="eyebrow">Outcome</p>
-    <p class="val">
-      {card.outcome}
-      {card.outcomeSub && <span>{card.outcomeSub}</span>}
-    </p>
+    <p class="val">{card.outcome}</p>
+    {card.outcomeSub && <p class="sub">{card.outcomeSub}</p>}
   </div>
 </a>
 
 <style>
   .card {
-    border: 1px solid var(--line); background: #fff;
-    padding: 36px 36px 32px; display: flex; flex-direction: column;
-    transition: transform 0.24s, box-shadow 0.24s, border-color 0.24s;
+    /* 같은 줄 카드끼리 제목·요약·결과 높이를 맞춘다(행 5개를 부모 그리드와 공유) */
+    display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 0; align-content: start;
+    color: inherit; border-top: 1px solid var(--ink); padding-top: 22px; margin-bottom: 80px;
+    background-image: linear-gradient(var(--navy), var(--navy)); background-repeat: no-repeat;
+    background-size: 0 2px; background-position: 0 -1px;
+    transition: background-size 0.4s var(--ease);
   }
-  .card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(15, 29, 58, 0.08); border-color: var(--line-strong); }
-  @media (prefers-reduced-motion: reduce) { .card, .card:hover { transition: none; transform: none; } }
-  .meta { font-size: 11px; letter-spacing: 0.18em; color: var(--ink-3); line-height: 1.9; font-weight: 500; }
-  .meta b { display: block; color: var(--ink-2); font-weight: 600; }
-  .role { margin-top: 22px; font-size: 11px; letter-spacing: 0.18em; color: var(--ink-3); }
-  .role b { display: block; margin-top: 4px; font-size: 14px; letter-spacing: 0; color: var(--ink); font-weight: 500; }
-  h3 { margin-top: 22px; font-size: 21px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.45; }
-  .sum { margin-top: 16px; font-size: 14px; color: var(--ink-2); line-height: 1.75; }
-  .outcome { margin-top: auto; padding-top: 22px; border-top: 1px solid var(--line); }
-  .outcome .eyebrow { font-size: 10px; }
-  .val { margin-top: 8px; min-height: 2.9em; font-size: 18px; color: var(--navy); font-weight: 600; letter-spacing: -0.01em; line-height: 1.45; }
-  .val span { line-height: 1.45; }
-  .val span { display: block; font-weight: 400; font-size: 15px; color: var(--ink-2); }
+  .card:hover, .card:focus-visible { background-size: 100% 2px; }
+
+  .top { display: flex; align-items: baseline; gap: 14px; font-size: 12px; letter-spacing: 0.04em; }
+  .no { color: var(--navy); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .cat { color: var(--ink-3); }
+  .arrow {
+    margin-left: auto; font-size: 18px; letter-spacing: 0; color: var(--navy);
+    opacity: 0; transform: translateX(-6px); transition: opacity 0.24s, transform 0.24s var(--ease);
+  }
+  .card:hover .arrow, .card:focus-visible .arrow { opacity: 1; transform: none; }
+
+  .org { margin-top: 26px; font-size: 14px; font-weight: 700; color: var(--ink); }
+  .org span { font-weight: 400; color: var(--ink-3); }
+  .org span::before { content: '·'; margin: 0 8px; color: var(--line-strong); }
+  h3 {
+    margin-top: 10px; font-size: 24px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.4;
+    transition: color 0.24s;
+  }
+  .card:hover h3 { color: var(--navy); }
+  .sum { margin-top: 14px; font-size: 15px; color: var(--ink-2); line-height: 1.75; }
+
+  .outcome { padding-top: 28px; }
+  .val {
+    padding-left: 14px; border-left: 2px solid var(--navy);
+    font-size: 18px; font-weight: 700; color: var(--navy); letter-spacing: -0.01em; line-height: 1.45;
+  }
+  .sub { margin-top: 4px; padding-left: 16px; font-size: 14px; color: var(--ink-3); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card, .arrow, h3 { transition: none; }
+  }
   @media (max-width: 900px) {
-    .card { padding: 28px 22px 24px; }
-    h3 { font-size: 19px; }
+    .card { margin-bottom: 48px; }
+    .org { margin-top: 18px; }
+    h3 { font-size: 20px; }
+    .sum { font-size: 14px; }
+    .outcome { padding-top: 20px; }
+    .arrow { opacity: 1; transform: none; }
   }
 </style>
