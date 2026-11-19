@@ -1,0 +1,56 @@
+---
+/** RCI Financial: 현지화 프로젝트 진행 단계와 절차서 7건 제정 결과 */
+import { featuredRci as f } from '../../../data/work';
+import PairCard from './PairCard.astro';
+---
+
+<PairCard
+  slug={f.slug}
+  category={f.category}
+  org={f.org}
+  title={f.title}
+  contribution={f.contribution}
+  result={f.result}
+  visualLabel={`프로젝트 진행: ${f.steps.join(' → ')}. Local Procedure ${f.procedures}건 모두 기한 내 제정`}
+>
+  <div class="rci">
+    <p class="cap">Project Flow</p>
+    <ol class="steps">
+      {f.steps.map((s, i) => (
+        <li><span class="dot num">{i + 1}</span><span class="lab">{s}</span></li>
+      ))}
+    </ol>
+    <div class="proc">
+      <div>
+        <p class="cap">Local Procedure</p>
+        <p class="big num">{f.procedures}<span>/ {f.procedures}건</span></p>
+      </div>
+      <ul class="cells" aria-hidden="true">
+        {Array.from({ length: f.procedures }, () => <li></li>)}
+      </ul>
+      <p class="ok">기한 내 제정</p>
+    </div>
+  </div>
+</PairCard>
+
+<style>
+  .cap { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+  .steps { position: relative; margin-top: 16px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .steps::before { content: ''; position: absolute; top: 11px; left: 12.5%; right: 12.5%; height: 2px; background: var(--navy); }
+  .steps li { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; }
+  .dot {
+    width: 24px; height: 24px; border-radius: 50%; background: var(--navy); color: #fff;
+    display: grid; place-items: center; font-size: 11px; font-weight: 700;
+  }
+  .lab { font-size: 12px; line-height: 1.4; color: var(--ink-2); }
+  .proc { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line-strong); display: grid; grid-template-columns: auto 1fr auto; align-items: end; gap: 20px; }
+  .big { margin-top: 2px; font-size: 34px; font-weight: 700; color: var(--navy); line-height: 1.1; }
+  .big span { margin-left: 6px; font-size: 14px; font-weight: 500; color: var(--ink-3); }
+  .cells { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; align-self: center; }
+  .cells li { height: 22px; border-radius: 3px; background: var(--navy); }
+  .ok { font-size: 12px; font-weight: 600; color: var(--accent); white-space: nowrap; }
+  @media (max-width: 420px) {
+    .proc { grid-template-columns: 1fr; gap: 10px; }
+    .lab { font-size: 11px; }
+  }
+</style>

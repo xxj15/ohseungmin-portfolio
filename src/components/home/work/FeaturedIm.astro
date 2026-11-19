@@ -1,0 +1,56 @@
+---
+/** SG Fenero(비공개): 산업 구조(EBD 4개 기술군)와 분석 지표만 보여준다. 고객사명 · 장표 · 수치는 쓰지 않는다. */
+import { featuredIm as f } from '../../../data/work';
+import PairCard from './PairCard.astro';
+---
+
+<PairCard
+  slug={f.slug}
+  category={f.category}
+  org={f.org}
+  title={f.title}
+  contribution={f.contribution}
+  result={f.result}
+  tag="Confidential"
+  visualLabel="산업 구조: Energy-Based Device 4개 기술군, 분석 지표"
+>
+  <div class="im">
+    <p class="cap">Industry Structure</p>
+    <div class="root">Energy-Based Device</div>
+    <ul class="segs">
+      {f.segments.map((s) => (
+        <li><b>{s.key}</b><span>{s.note}</span></li>
+      ))}
+    </ul>
+    <div class="focus">
+      <p class="cap">Analysis Focus</p>
+      <ul>{f.metrics.map((m) => <li>{m}</li>)}</ul>
+    </div>
+    <p class="note">고객사명 · 장표 원본 · 세부 수치 비공개</p>
+  </div>
+</PairCard>
+
+<style>
+  .cap { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+  .root {
+    position: relative; margin: 12px auto 0; width: max-content; padding: 6px 14px;
+    border-radius: 6px; background: var(--navy); color: #fff; font-size: 13px; font-weight: 600;
+  }
+  /* 루트에서 네 갈래로 내려오는 연결선 */
+  .segs { position: relative; margin-top: 28px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .segs::before { content: ''; position: absolute; top: -14px; left: 12.5%; right: 12.5%; height: 1px; background: var(--line-strong); }
+  .segs li { position: relative; padding: 10px 6px; border-radius: 6px; background: #fff; border: 1px solid var(--line); text-align: center; }
+  .segs li::before { content: ''; position: absolute; top: -15px; left: 50%; width: 1px; height: 15px; background: var(--line-strong); }
+  .root::after { content: ''; position: absolute; left: 50%; bottom: -15px; width: 1px; height: 15px; background: var(--line-strong); }
+  .segs b { display: block; font-size: 14px; color: var(--ink); }
+  .segs span { display: block; margin-top: 2px; font-size: 11px; line-height: 1.4; color: var(--ink-3); }
+  .focus { margin-top: 20px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .focus ul { display: flex; gap: 6px; }
+  .focus li { padding: 3px 10px; border-radius: 4px; background: var(--tint-2); font-size: 12px; font-weight: 600; color: var(--accent); }
+  .note { margin-top: 14px; font-size: 12px; color: var(--ink-3); }
+  @media (max-width: 420px) {
+    .segs { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 8px; }
+    .segs::before, .segs li::before, .root::after { display: none; }
+    .segs { margin-top: 14px; }
+  }
+</style>

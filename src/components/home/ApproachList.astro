@@ -3,15 +3,21 @@ import { site } from '../../data/site';
 import SectionHead from './SectionHead.astro';
 ---
 
-<section id="approach" class="sec">
+<section id="approach" class="sec sec--tint">
   <div class="wrap">
-    <SectionHead no="02" label="APPROACH" title="분석 방식" />
-    <ol class="rows">
+    <SectionHead no="02" label="Approach" title="분석 방식" lede="문제 정의에서 결론까지 네 단계. 단계마다 실제 프로젝트에서 쓴 방법" />
+    <ol class="steps">
       {site.approach.map((row) => (
-        <li class="row" data-reveal>
-          <span class="no">{row.no}</span>
-          <h3>{row.title}<small>{row.en}</small></h3>
-          <p><span set:html={row.body} /><small>{row.source}</small></p>
+        <li class="step" data-reveal data-approach-step>
+          <div class="marker" aria-hidden="true"><span class="num">{row.no}</span></div>
+          <p class="en">{row.en}</p>
+          <h3>{row.title}</h3>
+          <p class="desc">{row.desc}</p>
+          <div class="ex">
+            <p class="ex-k">Case</p>
+            <p class="ex-b" set:html={row.example} />
+            <p class="src">{row.source}</p>
+          </div>
         </li>
       ))}
     </ol>
@@ -19,16 +25,29 @@ import SectionHead from './SectionHead.astro';
 </section>
 
 <style>
-  .rows { margin-top: 64px; border-top: 1px solid var(--line); }
-  .row { display: grid; grid-template-columns: 120px 1fr 1.3fr; gap: 40px; padding: 38px 0; border-bottom: 1px solid var(--line); }
-  .no { font-size: 12px; letter-spacing: 0.04em; color: var(--ink-3); }
-  h3 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
-  h3 small { display: block; font-size: 12px; color: var(--ink-3); font-weight: 400; letter-spacing: 0.04em; margin-top: 6px; }
-  p { font-size: 15px; color: var(--ink-2); }
-  p small { display: block; margin-top: 6px; font-size: 13px; color: var(--ink-3); }
+  .steps { position: relative; margin-top: 64px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+  /* 단계 사이 연결선 */
+  .steps::before { content: ''; position: absolute; top: 15px; left: 16px; right: calc(25% - 8px); height: 1px; background: var(--line-strong); }
+  .step { position: relative; display: flex; flex-direction: column; }
+  .marker { position: relative; width: 32px; height: 32px; border-radius: 50%; background: var(--navy); color: #fff; display: grid; place-items: center; font-size: 12px; font-weight: 700; }
+  .en { margin-top: 22px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+  h3 { margin-top: 4px; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+  .desc { margin-top: 10px; font-size: 15px; color: var(--ink-2); line-height: 1.65; }
+  .ex { margin-top: 20px; padding: 18px 18px 16px; border-radius: 8px; background: #fff; border: 1px solid var(--line); flex: 1; }
+  .ex-k { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+  .ex-b { margin-top: 6px; font-size: 14px; line-height: 1.65; color: var(--ink-2); }
+  .ex-b :global(b) { color: var(--navy); font-weight: 700; }
+  .src { margin-top: 10px; font-size: 12px; color: var(--ink-3); }
+
+  /* 모바일: 세로 타임라인 */
   @media (max-width: 900px) {
-    .rows { margin-top: 32px; }
-    .row { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
-    h3 { font-size: 19px; }
+    .steps { margin-top: 36px; grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .steps::before { top: 16px; bottom: 16px; left: 15px; right: auto; width: 1px; height: auto; }
+    .step { padding: 0 0 32px 52px; }
+    .step:last-child { padding-bottom: 0; }
+    .marker { position: absolute; left: 0; top: 0; }
+    .en { margin-top: 6px; }
+    h3 { font-size: 20px; }
+    .ex { margin-top: 14px; }
   }
 </style>

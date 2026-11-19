@@ -4,7 +4,12 @@ test('히어로', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('h1')).toHaveText('산업 구조를 분석하고 기업가치로 결론 내는 전략 분석가');
   await expect(page.locator('h1 b')).toHaveText(['산업 구조', '기업가치']);
-  await expect(page.getByText('서강대학교 · Sogang Wise Investment Club 38기 · RCI Financial Credit Risk 인턴 · SG Fenero IM 프로젝트')).toBeVisible();
+  await expect(page.locator('.hero .eyebrow')).toHaveText(/Strategy & Financial Research/i);
+  await expect(page.locator('.hero a', { hasText: 'Selected Work' })).toHaveAttribute('href', '/#work');
+  await expect(page.locator('.hero a', { hasText: 'Research Reports' })).toHaveAttribute('href', '/#research');
+  await expect(page.locator('[data-credentials] dd')).toHaveText([
+    /서강대학교/, /Sogang Wise Investment Club 38기/, /RCI Financial/, /SG Fenero/,
+  ]);
 });
 
 test('섹션 순서와 제목', async ({ page }) => {
@@ -31,12 +36,14 @@ test('소개 학력', async ({ page }) => {
   await expect(page.locator('#about')).toContainText('유럽문화학과 (독일어심화) · 경영학 복수전공');
 });
 
-test('모든 섹션 배경 흰색', async ({ page }) => {
+test('섹션 배경: 분석 방식만 옅은 Blue Gray, 나머지는 흰색', async ({ page }) => {
   await page.goto('/');
   const sections = await page.locator('main section').all();
-  expect(sections.length).toBeGreaterThanOrEqual(4);
+  expect(sections.length).toBe(4);
   for (const s of sections) {
-    await expect(s).toHaveCSS('background-color', /rgb\(255, 255, 255\)|rgba\(0, 0, 0, 0\)/);
+    const id = await s.getAttribute('id');
+    if (id === 'approach') await expect(s).toHaveCSS('background-color', 'rgb(245, 247, 250)');
+    else await expect(s).toHaveCSS('background-color', /rgb\(255, 255, 255\)|rgba\(0, 0, 0, 0\)/);
   }
 });
 

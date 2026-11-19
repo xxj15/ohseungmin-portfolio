@@ -4,7 +4,8 @@ import { site } from '../src/data/site';
 import { contactItems, hasContact, neighbors } from '../src/lib/content';
 import { PRIVATE_TERMS } from './private-terms';
 
-const SLUGS = ['hanwha-solutions', 'hd-hyundai-heavy', 'rci-financial', 'moon-sun-power', 'confidential-im', 'bok-competition', 'swic-macro'];
+// 홈 Work 순서: Featured(한화솔루션 · SG Fenero · RCI) → Additional(HD · 한국은행 · SWIC · MSP)
+const SLUGS = ['hanwha-solutions', 'confidential-im', 'rci-financial', 'hd-hyundai-heavy', 'bok-competition', 'swic-macro', 'moon-sun-power'];
 
 test('케이스 7개, 순서·번호', () => {
   expect(cases.map((c) => c.slug)).toEqual(SLUGS);
@@ -21,8 +22,8 @@ test('문구 규칙 위반 없음', () => {
 test('핵심 수치', () => {
   const h = cases[0];
   expect(h.kpis.map((k) => k.value)).toEqual(['43,300', '+30', '1조 7,361', '10.3']);
-  expect(cases[4].card.org).toBe('Confidential');
-  expect(cases[5].card.outcome).toBe('심리지표 VIX → NSI 교체 제안 · 채택');
+  expect(cases[1].card.org).toBe('Confidential');
+  expect(cases[4].card.outcome).toBe('심리지표 VIX → NSI 교체 제안 · 채택');
 });
 
 test('연락처 헬퍼: 없음/있음 두 상태', () => {
@@ -37,8 +38,8 @@ test('연락처 헬퍼: 없음/있음 두 상태', () => {
 
 test('이전/다음 헬퍼', () => {
   expect(neighbors(cases, 'hanwha-solutions').prev).toBeUndefined();
-  expect(neighbors(cases, 'hanwha-solutions').next?.slug).toBe('hd-hyundai-heavy');
-  expect(neighbors(cases, 'swic-macro').next).toBeUndefined();
+  expect(neighbors(cases, 'hanwha-solutions').next?.slug).toBe('confidential-im');
+  expect(neighbors(cases, 'moon-sun-power').next).toBeUndefined();
 });
 
 test('site 현재 상태: 이메일·LinkedIn·리포트 PDF 3개 있음, 이력서 없음', () => {

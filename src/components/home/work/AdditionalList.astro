@@ -1,0 +1,47 @@
+---
+import { additionalWork } from '../../../data/work';
+import { casePath } from '../../../lib/paths';
+---
+
+<ul class="add" data-additional>
+  {additionalWork.map((w) => (
+    <li data-reveal>
+      <a class="item" href={casePath(w.slug)} data-case-card>
+        <p class="cat">{w.category}</p>
+        <h4>{w.org}</h4>
+        <dl>
+          <div><dt>Subject</dt><dd>{w.subject}</dd></div>
+          <div class="res"><dt>Result</dt><dd>{w.result}</dd></div>
+        </dl>
+        <span class="more">자세히 보기 <span class="arr" aria-hidden="true">→</span></span>
+      </a>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .add { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .item {
+    display: flex; flex-direction: column; height: 100%; padding: 28px 28px 20px;
+    border-top: 2px solid var(--navy); border-radius: 0 0 10px 10px; background: #fff;
+    transition: background-color var(--dur);
+  }
+  .item:hover { background: var(--tint); }
+  .item:hover .more .arr { transform: translateX(4px); }
+  .cat { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+  h4 { margin-top: 10px; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.35; }
+  dl { margin-top: 16px; display: grid; gap: 8px; }
+  dl div { display: grid; grid-template-columns: 72px 1fr; gap: 10px; }
+  dt { padding-top: 3px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+  dd { font-size: 15px; color: var(--ink-2); line-height: 1.6; }
+  .res dd { font-weight: 700; color: var(--navy); }
+  .more { margin-top: auto; padding-top: 12px; }
+  @media (prefers-reduced-motion: reduce) { .item { transition: none; } }
+  @media (max-width: 900px) {
+    .add { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .item { padding: 22px 0 12px; border-radius: 0; }
+    .item:hover { background: transparent; }
+    h4 { font-size: 20px; }
+    dl div { grid-template-columns: 1fr; gap: 0; }
+  }
+</style>

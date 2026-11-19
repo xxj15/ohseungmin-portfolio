@@ -1,0 +1,63 @@
+---
+/** 두 번째 줄 2열 카드의 공통 틀. 시각 자료는 슬롯으로 받아 카드마다 다르게 그린다. */
+import { casePath } from '../../../lib/paths';
+import type { CaseSlug } from '../../../data/types';
+
+interface Props {
+  slug: CaseSlug;
+  category: string;
+  org: string;
+  title: string;
+  contribution: string;
+  result: string;
+  tag?: string;
+  visualLabel: string;
+}
+const { slug, category, org, title, contribution, result, tag, visualLabel } = Astro.props;
+---
+
+<article class="pc" data-case-card data-featured={slug} data-reveal>
+  <p class="meta"><span class="cat">{category}</span>{tag && <span class="tag">{tag}</span>}</p>
+  <p class="org">{org}</p>
+  <h3><a href={casePath(slug)} class="stretch">{title}</a></h3>
+
+  <div class="visual" aria-label={visualLabel}>
+    <slot />
+  </div>
+
+  <dl class="facts">
+    <div><dt>Contribution</dt><dd>{contribution}</dd></div>
+    <div class="res"><dt>Result</dt><dd>{result}</dd></div>
+  </dl>
+  <span class="more">View Case Study <span class="arr" aria-hidden="true">→</span></span>
+</article>
+
+<style>
+  .pc {
+    position: relative; display: flex; flex-direction: column; padding: 36px;
+    border: 1px solid var(--line); border-radius: 12px; background: #fff;
+    transition: box-shadow var(--dur) var(--ease), border-color var(--dur);
+  }
+  .pc:hover { border-color: var(--line-strong); box-shadow: 0 10px 30px rgba(20, 43, 73, 0.06); }
+  .pc:hover .more .arr { transform: translateX(4px); }
+  .meta { display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  .cat { color: var(--accent); }
+  .tag { padding: 2px 8px; border: 1px solid var(--line-strong); border-radius: 4px; color: var(--ink-3); font-size: 11px; }
+  .org { margin-top: 20px; font-size: 15px; font-weight: 700; color: var(--ink); }
+  h3 { margin-top: 6px; font-size: 25px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.4; }
+  .stretch::after { content: ''; position: absolute; inset: 0; border-radius: 12px; }
+  .visual { flex: 1; margin-top: 24px; padding: 24px; border-radius: 8px; background: var(--tint); }
+  .facts { margin-top: 24px; display: grid; gap: 14px; }
+  .facts div { display: grid; grid-template-columns: 104px 1fr; gap: 12px; }
+  dt { padding-top: 3px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+  dd { font-size: 15px; color: var(--ink-2); line-height: 1.6; }
+  .res dd { font-size: 17px; font-weight: 700; color: var(--navy); }
+  .more { padding-top: 16px; }
+  @media (prefers-reduced-motion: reduce) { .pc { transition: none; } }
+  @media (max-width: 900px) {
+    .pc { padding: 24px 20px; }
+    h3 { font-size: 22px; }
+    .visual { padding: 18px 16px; }
+    .facts div { grid-template-columns: 1fr; gap: 2px; }
+  }
+</style>

@@ -32,11 +32,11 @@ const items = [
   nav.is-scrolled { border-bottom-color: var(--line); }
   .progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--navy); transform: scaleX(0); transform-origin: left; pointer-events: none; }
   .nav-inner { height: var(--nav-height); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-  .logo { font-size: 19px; font-weight: 600; letter-spacing: -0.02em; }
+  .logo { font-size: 19px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); }
   .menu { display: flex; gap: 34px; font-size: 14px; color: var(--ink-2); align-self: stretch; }
   .menu a { position: relative; display: flex; align-items: center; transition: color 0.2s; }
   .menu a:hover { color: var(--ink); }
-  .menu a[aria-current='location'] { color: var(--navy); font-weight: 600; }
+  .menu a[aria-current='location'] { color: var(--ink); font-weight: 600; }
   .menu a[aria-current='location']::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--navy); }
   .nav-end { min-width: 110px; display: flex; justify-content: flex-end; }
   @media (max-width: 900px) {

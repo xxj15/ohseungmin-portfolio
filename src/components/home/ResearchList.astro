@@ -6,15 +6,19 @@ import SectionHead from './SectionHead.astro';
 
 <section id="research" class="sec">
   <div class="wrap">
-    <SectionHead no="03" label="RESEARCH" title="리서치 리포트" />
-    <ul class="quotes">
+    <SectionHead no="03" label="Research" title="리서치 리포트" lede="SWIC에서 단독 작성한 리포트 원문. 표지를 누르면 PDF로 열림" />
+    <ul class="gallery">
       {site.research.map((item) => (
-        <li class="q" data-reveal>
-          <p class="tag">{item.tag}</p>
-          <blockquote>{item.title}</blockquote>
-          <p class="sum">{item.summary}</p>
+        <li class="rep" data-reveal data-report>
+          <a class="cover" href={item.pdf ? withBase(item.pdf) : undefined} target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <img src={withBase(item.cover)} alt="" loading="lazy" width="720" height="1018" />
+          </a>
+          <p class="meta"><span class="cat">{item.category}</span><span class="num">{item.date} · {item.pages}</span></p>
+          <h3>{item.title}</h3>
+          <blockquote>{item.alt}</blockquote>
+          <p class="view"><b>{item.rating}</b>{item.view}</p>
           {item.pdf && (
-            <a class="pdf" href={withBase(item.pdf)} target="_blank" rel="noopener">PDF 보기 ↗</a>
+            <a class="more" href={withBase(item.pdf)} target="_blank" rel="noopener">View Report (PDF) <span class="arr" aria-hidden="true">↗</span></a>
           )}
         </li>
       ))}
@@ -23,15 +27,34 @@ import SectionHead from './SectionHead.astro';
 </section>
 
 <style>
-  .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; margin-top: 64px; }
-  .tag { font-size: 12px; letter-spacing: 0.04em; color: var(--navy); margin-bottom: 14px; }
-  blockquote { font-size: 26px; font-weight: 600; line-height: 1.5; letter-spacing: -0.01em; }
-  blockquote::before { content: '“'; color: var(--navy-light); }
-  blockquote::after { content: '”'; color: var(--navy-light); }
-  .sum { margin-top: 16px; font-size: 15px; color: var(--ink-2); line-height: 1.7; }
-  .pdf { display: inline-block; margin-top: 22px; font-size: 13px; color: var(--navy); border-bottom: 1px solid var(--navy); }
+  .gallery { margin-top: 56px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+  .rep { display: flex; flex-direction: column; }
+  .cover {
+    display: block; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 8px;
+    border: 1px solid var(--line); background: var(--tint);
+    transition: border-color var(--dur), box-shadow var(--dur) var(--ease);
+  }
+  .cover img { width: 100%; height: auto; transition: transform 240ms var(--ease); }
+  .cover:hover { border-color: var(--line-strong); box-shadow: 0 10px 30px rgba(20, 43, 73, 0.08); }
+  .cover:hover img { transform: translateY(-2%); }
+  .meta { margin-top: 20px; display: flex; justify-content: space-between; gap: 12px; font-size: 12px; color: var(--ink-3); }
+  .cat { font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+  h3 { margin-top: 8px; font-size: 21px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.4; }
+  blockquote { margin-top: 4px; font-size: 14px; color: var(--ink-3); }
+  blockquote::before { content: '“'; }
+  blockquote::after { content: '”'; }
+  .view { margin-top: 14px; font-size: 15px; line-height: 1.65; color: var(--ink-2); }
+  .view b {
+    display: inline-block; margin-right: 8px; padding: 0 7px; border-radius: 4px; background: var(--navy);
+    color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; line-height: 20px; vertical-align: 1px;
+  }
+  .more { margin-top: auto; padding-top: 8px; }
+  @media (prefers-reduced-motion: reduce) { .cover, .cover img { transition: none; } .cover:hover img { transform: none; } }
+  @media (max-width: 1000px) {
+    .gallery { grid-template-columns: minmax(0, 1fr); gap: 48px; max-width: 560px; }
+  }
   @media (max-width: 900px) {
-    .quotes { grid-template-columns: 1fr; gap: 40px; margin-top: 32px; }
-    blockquote { font-size: 22px; }
+    .gallery { margin-top: 32px; }
+    h3 { font-size: 20px; }
   }
 </style>

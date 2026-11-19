@@ -15,7 +15,7 @@ export function getStaticPaths() {
 interface Props { c: CaseStudy }
 const { c } = Astro.props;
 const { prev, next } = neighbors(cases, c.slug);
-const titleOrg = c.card.org === 'CONFIDENTIAL' ? 'Confidential' : c.org;
+const titleOrg = c.slug === 'confidential-im' ? 'Confidential' : c.org;
 ---
 
 <BaseLayout title={`${titleOrg} · ${c.title} | 오승민`} description={c.card.summary}>

@@ -2,7 +2,7 @@ import type { CaseStudy } from '../types';
 
 export const hdHyundaiHeavy: CaseStudy = {
   slug: 'hd-hyundai-heavy',
-  no: '02',
+  no: '04',
   name: 'HD현대중공업',
   card: {
     category: 'INDUSTRY RESEARCH · 조선',

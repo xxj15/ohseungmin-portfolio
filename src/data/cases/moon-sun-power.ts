@@ -2,7 +2,7 @@ import type { CaseStudy } from '../types';
 
 export const moonSunPower: CaseStudy = {
   slug: 'moon-sun-power',
-  no: '04',
+  no: '07',
   name: 'Moon, Sun, Power',
   card: {
     category: 'STRATEGY · EDTECH',

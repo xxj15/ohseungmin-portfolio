@@ -3,14 +3,16 @@ interface Props {
   no: string;
   label: string;
   title: string;
+  lede?: string;
 }
-const { no, label, title } = Astro.props;
+const { no, label, title, lede } = Astro.props;
 ---
 
 <div class="head" data-reveal>
   <div>
     <p class="sec-label"><span>{no}</span>{label}</p>
     <h2 class="h2">{title}</h2>
+    {lede && <p class="lede">{lede}</p>}
   </div>
   <slot />
 </div>

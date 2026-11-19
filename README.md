@@ -16,8 +16,10 @@ npm test         # 빌드 후 Playwright 테스트 (설치된 Chrome 사용)
 
 문구와 수치는 전부 `src/data/`에 있습니다. 화면 코드는 고칠 필요가 없습니다.
 
-- 홈 공용(히어로 · 분석 방식 · 리서치 · 소개 · 연락처): `src/data/site.ts`
-- 케이스 7개: `src/data/cases/*.ts` (순서는 `src/data/cases/index.ts`)
+- 홈 공용(히어로 · credential line · 분석 방식 · 리서치 갤러리 · 소개 · 연락처): `src/data/site.ts`
+- 홈 Work 섹션(Featured 3 · Additional 4 요약, 한화솔루션 영업이익 막대): `src/data/work.ts`
+- 케이스 7개 상세: `src/data/cases/*.ts` (순서는 `src/data/cases/index.ts`, 홈 Work 순서와 같음)
+- 리포트 표지 썸네일: `public/reports/covers/*.jpg` (PDF 첫 페이지. macOS면 `sips -s format jpeg --resampleWidth 720 <pdf> --out <jpg>`)
 
 문구 규칙: 섹션 제목은 명사, 케이스 제목은 명사형, 설명은 사실 서술. 말 거는 문장과 대시(—)는 쓰지 않습니다(`tests/data.spec.ts`가 검사).
 

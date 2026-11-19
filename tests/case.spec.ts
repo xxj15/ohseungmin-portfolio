@@ -18,9 +18,9 @@ for (const c of cases) {
 test('이전/다음 순환', async ({ page }) => {
   await page.goto('/work/hanwha-solutions/');
   await expect(page.locator('[data-pager-prev]')).toHaveAttribute('href', '/#work');
-  await expect(page.locator('[data-pager-next]')).toHaveAttribute('href', '/work/hd-hyundai-heavy/');
-  await page.goto('/work/swic-macro/');
-  await expect(page.locator('[data-pager-prev]')).toHaveAttribute('href', '/work/bok-competition/');
+  await expect(page.locator('[data-pager-next]')).toHaveAttribute('href', '/work/confidential-im/');
+  await page.goto('/work/moon-sun-power/');
+  await expect(page.locator('[data-pager-prev]')).toHaveAttribute('href', '/work/swic-macro/');
   await expect(page.locator('[data-pager-next]')).toHaveAttribute('href', '/#work');
 });
 
@@ -45,11 +45,12 @@ test('HD: 입력 필요 표시 없음, 결과 문구', async ({ page }) => {
   await expect(page.locator('[data-block]').last()).toContainText('Comps · DCF 밸류에이션 모델 구축');
 });
 
-test('상세 페이지 배경 흰색', async ({ page }) => {
+test('상세 페이지: 본문 블록은 흰 배경, 핵심 성과 띠만 옅은 Blue Gray', async ({ page }) => {
   await page.goto('/work/hanwha-solutions/');
-  const els = await page.locator('[data-kpi-strip], [data-block]').all();
-  expect(els.length).toBe(1 + cases[0].blocks.length);
-  for (const el of els) {
+  const blocks = await page.locator('[data-block]').all();
+  expect(blocks.length).toBe(cases[0].blocks.length);
+  for (const el of blocks) {
     await expect(el).toHaveCSS('background-color', /rgb\(255, 255, 255\)|rgba\(0, 0, 0, 0\)/);
   }
+  await expect(page.locator('[data-kpi-strip]')).toHaveCSS('background-color', 'rgb(245, 247, 250)');
 });

@@ -1,22 +1,34 @@
-/* 디자인 토큰 — docs/superpowers/mockups 시안의 :root 최종값. 배경은 전부 흰색. */
+/* 디자인 토큰. 흰 배경 + Deep Navy, 강조는 Muted Blue를 필요한 곳에만. */
 :root {
   --surface: #ffffff;
-  --ink: #15192a;
-  --ink-2: #4b5263;
-  --ink-3: #687083;
-  --navy: #1b3a78;
-  --navy-deep: #0f1d3a;
-  --navy-light: #9fb3d9;
-  --navy-tint: #dbe2ef;
-  --line: #e3e6ec;
-  --line-strong: #cdd4df;
+  /* 일부 섹션·패널만 쓰는 아주 옅은 Blue Gray */
+  --tint: #f5f7fa;
+  --tint-2: #eef2f7;
 
-  --font-sans: 'Pretendard Variable', Pretendard, -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  /* 제목·핵심 숫자: Deep Navy */
+  --ink: #142b49;
+  /* 본문: Dark Slate */
+  --ink-2: #3b4757;
+  /* 보조 정보: Slate Gray */
+  --ink-3: #66727f;
 
-  --wrap: 1320px;
-  --gutter: 60px;
+  --navy: #142b49;
+  --navy-deep: #0e1f36;
+  /* 강조: Muted Blue (링크·라벨 등 제한적으로) */
+  --accent: #42658f;
+  --navy-light: #a9b8cc;
+  --navy-tint: #dbe3ed;
+  --line: #e3e8ef;
+  --line-strong: #c9d2de;
+
+  --font-sans: 'Inter', 'Pretendard Variable', Pretendard, -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+
+  --wrap: 1280px;
+  --gutter: 40px;
   --gutter-mobile: 20px;
-  --nav-height: 76px;
-  --section-pad: 120px;
+  --nav-height: 72px;
+  --section-pad: 128px;
+  --radius: 10px;
   --ease: cubic-bezier(0.2, 0, 0, 1);
+  --dur: 200ms;
 }

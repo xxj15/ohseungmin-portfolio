@@ -10,45 +10,43 @@ const showContact = hasContact(site.contact);
 
 <section id="about" class="sec">
   <div class="wrap">
-    <SectionHead no="04" label="ABOUT" title="소개" />
-    <div class="lists">
+    <SectionHead no="04" label="About" title="소개" />
+    <div class="cv">
       {site.about.map((group) => (
-        <div data-reveal>
+        <div class="grp" data-reveal>
           <h3>{group.heading}</h3>
-          <dl>
+          <ul>
             {group.rows.map((row) => (
-              <div class="item">
-                <dt>{row.label}</dt>
-                <dd>
-                  {row.value}
-                  {row.sub && <small>{row.sub}</small>}
-                </dd>
-              </div>
+              <li class="item">
+                <div>
+                  <p class="t">{row.title}</p>
+                  {row.sub && <p class="s">{row.sub}</p>}
+                </div>
+                {row.meta && <span class="m num">{row.meta}</span>}
+              </li>
             ))}
-          </dl>
+          </ul>
         </div>
       ))}
       {showContact && (
-        <div data-reveal data-contact>
-          <h3>연락처</h3>
-          <dl>
+        <div class="grp contact" data-reveal data-contact>
+          <h3>Contact</h3>
+          <ul>
             {contacts.map((item) => (
-              <div class="item">
-                <dt>{item.label}</dt>
-                <dd>
-                  <a class="link" href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel="noopener">
-                    {item.text}{item.href.startsWith('http') && <span aria-hidden="true"> ↗</span>}
-                  </a>
-                </dd>
-              </div>
+              <li class="item">
+                <span class="cl">{item.label}</span>
+                <a class="link" href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel="noopener">
+                  {item.text}{item.href.startsWith('http') && <span aria-hidden="true"> ↗</span>}
+                </a>
+              </li>
             ))}
             {site.contact.resumePdf && (
-              <div class="item">
-                <dt>이력서</dt>
-                <dd><a class="link" href={withBase(site.contact.resumePdf)} target="_blank" rel="noopener">이력서 PDF 받기 <span aria-hidden="true">↓</span></a></dd>
-              </div>
+              <li class="item">
+                <span class="cl">이력서</span>
+                <a class="link" href={withBase(site.contact.resumePdf)} target="_blank" rel="noopener">이력서 PDF 받기 <span aria-hidden="true">↓</span></a>
+              </li>
             )}
-          </dl>
+          </ul>
         </div>
       )}
     </div>
@@ -56,17 +54,29 @@ const showContact = hasContact(site.contact);
 </section>
 
 <style>
-  .lists { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 64px; }
-  h3 { font-size: 13px; letter-spacing: 0.04em; color: var(--ink-3); font-weight: 500; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
-  .item { display: grid; grid-template-columns: 120px 1fr; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
-  dt { color: var(--ink-3); font-size: 14px; }
-  dd { font-weight: 600; }
-  dd small { display: block; color: var(--ink-3); font-size: 13px; margin-top: 2px; font-weight: 400; }
-  .link { overflow-wrap: anywhere; background: linear-gradient(var(--navy), var(--navy)) 0 100% / 0 1px no-repeat; transition: color 0.2s, background-size 0.24s; }
-  .link:hover, .link:focus-visible { color: var(--navy); background-size: 100% 1px; }
-  .link span { color: var(--ink-3); }
+  .cv { margin-top: 56px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px 64px; }
+  .grp { display: grid; grid-template-columns: 180px 1fr; gap: 24px; align-content: start; border-top: 1px solid var(--ink); padding-top: 20px; }
+  h3 { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); }
+  .item { display: flex; justify-content: space-between; gap: 16px; padding-bottom: 16px; }
+  .item + .item { padding-top: 16px; border-top: 1px solid var(--line); }
+  .t { font-size: 16px; font-weight: 700; color: var(--ink); line-height: 1.5; }
+  .s { margin-top: 2px; font-size: 14px; color: var(--ink-3); }
+  .m { flex-shrink: 0; font-size: 13px; color: var(--ink-3); padding-top: 2px; }
+  .contact .item { justify-content: flex-start; align-items: center; }
+  .contact .link { display: inline-flex; align-items: center; min-height: 44px; background-position: 0 calc(100% - 10px); }
+  .cl { width: 72px; flex-shrink: 0; font-size: 13px; color: var(--ink-3); }
+  .link {
+    font-size: 16px; font-weight: 600; color: var(--ink); overflow-wrap: anywhere;
+    background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 1px no-repeat;
+    transition: color var(--dur), background-size var(--dur);
+  }
+  .link:hover, .link:focus-visible { color: var(--accent); background-size: 100% 1px; }
+  @media (prefers-reduced-motion: reduce) { .link { transition: none; } }
+  @media (max-width: 1100px) {
+    .grp { grid-template-columns: 1fr; gap: 16px; }
+  }
   @media (max-width: 900px) {
-    .lists { grid-template-columns: 1fr; gap: 40px; margin-top: 32px; }
-    .item { grid-template-columns: 88px 1fr; }
+    .cv { margin-top: 32px; grid-template-columns: minmax(0, 1fr); gap: 40px; }
+    .t { font-size: 15px; }
   }
 </style>

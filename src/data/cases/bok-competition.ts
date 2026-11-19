@@ -2,7 +2,7 @@ import type { CaseStudy } from '../types';
 
 export const bokCompetition: CaseStudy = {
   slug: 'bok-competition',
-  no: '06',
+  no: '05',
   name: '한국은행 경시대회',
   card: {
     category: 'ECONOMIC RESEARCH · 거시경제',

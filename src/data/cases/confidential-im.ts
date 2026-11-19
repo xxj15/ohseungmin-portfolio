@@ -3,7 +3,7 @@ import type { CaseStudy } from '../types';
 /** 고객사 보호: 회사명 · 장표 원본 · 세부 수치를 쓰지 않는다(spec §7). */
 export const confidentialIm: CaseStudy = {
   slug: 'confidential-im',
-  no: '05',
+  no: '02',
   name: 'Confidential',
   card: {
     category: 'M&A ADVISORY · 미용의료기기',

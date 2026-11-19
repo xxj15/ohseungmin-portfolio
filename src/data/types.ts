@@ -68,6 +68,22 @@ export interface CaseStudy {
 }
 
 export interface Contact { email?: string; linkedin?: string; resumePdf?: string }
-export interface ResearchItem { tag: string; title: string; summary: string; pdf?: string }
-export interface ApproachRow { no: string; title: string; en: string; body: Rich; source: string }
-export interface AboutGroup { heading: string; rows: { label: string; value: string; sub?: string }[] }
+
+/** 홈 리서치 갤러리. title은 보고서 주제, alt는 원래 보고서 제목(유머 섞인 제목은 보조 제목으로). */
+export interface ResearchItem {
+  category: string;
+  date: string;
+  pages: string;
+  rating: string;
+  title: string;
+  alt: string;
+  view: string;
+  cover: string;
+  pdf?: string;
+}
+/** 분석 방식 한 단계: 영문 동사 · 한글 단계명 · 방법 설명 · 실제 사례 */
+export interface ApproachRow { no: string; en: string; title: string; desc: string; example: Rich; source: string }
+export interface AboutRow { title: string; sub?: string; meta?: string }
+export interface AboutGroup { heading: string; rows: AboutRow[] }
+/** Hero 하단 credential line */
+export interface Credential { label: string; value: string; sub: string }

@@ -1,6 +1,6 @@
 /**
  * 스크롤 등장 · 차트 그리기
- * - [data-reveal]: 화면 아래 15% 선에 닿으면 1회, 아래에서 16px 떠오르며 나타남(480ms). 같은 부모의 형제는 60ms 간격(최대 4).
+ * - [data-reveal]: 화면 아래 15% 선에 닿으면 1회, 아래에서 10px 떠오르며 나타남(360ms). 같은 부모의 형제는 60ms 간격(최대 4).
  * - [data-chart]: 보이면 막대가 자라고 선이 그려진다(CSS가 담당, 이 스크립트는 클래스만 바꾼다).
  * - 숨김 클래스는 이 스크립트가 붙인다 → 스크립트가 실패하면 아무것도 숨지 않는다.
  * - 처음 화면에 이미 보이는 요소는 건드리지 않는다. 동작 줄이기 설정이면 아무것도 하지 않는다.
@@ -8,7 +8,7 @@
 import { prefersReducedMotion } from './motion';
 
 const KINDS = [
-  { selector: '[data-reveal]', pending: 'reveal-pending', active: 'is-revealing', duration: 480 },
+  { selector: '[data-reveal]', pending: 'reveal-pending', active: 'is-revealing', duration: 360 },
   { selector: '[data-chart]', pending: 'chart-pending', active: 'is-drawing', duration: 1400 },
 ] as const;
 const STAGGER_MS = 60;

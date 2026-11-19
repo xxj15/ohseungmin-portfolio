@@ -1,0 +1,151 @@
+---
+import { featuredHanwha as f } from '../../../data/work';
+import { casePath, withBase } from '../../../lib/paths';
+
+/* 영업이익 막대: 0선 위·아래로 실제 값 비율대로 그린다 */
+const values = f.opIncome.bars.map((b) => b.value);
+const max = Math.max(...values, 0);
+const min = Math.min(...values, 0);
+const range = max - min;
+const zero = (max / range) * 100; // 위에서 0선까지 %
+const bars = f.opIncome.bars.map((b) => {
+  const h = (Math.abs(b.value) / range) * 100;
+  const top = b.value >= 0 ? zero - h : zero;
+  return { ...b, h, top, text: b.value.toLocaleString('en-US') };
+});
+---
+
+<article class="fh" data-case-card data-featured="hanwha" data-reveal>
+  <div class="body">
+    <p class="meta"><span class="cat">{f.category}</span><span class="tag">Featured</span></p>
+    <p class="org">{f.org}<span class="num">{f.ticker}</span></p>
+    <h3><a href={casePath(f.slug)} class="stretch">{f.title}</a></h3>
+    <p class="thesis"><span class="k">Thesis</span>{f.thesis}</p>
+    <ol class="drivers" aria-label="투자포인트">
+      {f.drivers.map((d, i) => (
+        <li><span class="dn num">{String(i + 1).padStart(2, '0')}</span><b>{d.key}</b><span class="dt">{d.text}</span></li>
+      ))}
+    </ol>
+    <p class="role"><span class="k">Role</span>{f.role}</p>
+    <div class="links">
+      <span class="more">View Case Study <span class="arr" aria-hidden="true">→</span></span>
+      <a class="pdf" href={withBase(f.pdf)} target="_blank" rel="noopener">리포트 PDF ↗</a>
+    </div>
+  </div>
+
+  <div class="panel" aria-label="투자의견 요약">
+    <div class="rating">
+      <div class="call">
+        <span class="badge">{f.rating}</span>
+        <span class="asof">기준 {f.asOf}</span>
+      </div>
+      <dl class="figs">
+        <div class="tp">
+          <dt>목표주가</dt>
+          <dd class="num">₩{f.target}</dd>
+        </div>
+        <div>
+          <dt>상승여력</dt>
+          <dd class="num up">{f.upside}</dd>
+        </div>
+        <div>
+          <dt>현재주가</dt>
+          <dd class="num sm">₩{f.current}</dd>
+        </div>
+      </dl>
+    </div>
+
+    <figure class="chart" aria-label={`${f.opIncome.unit}: ${bars.map((b) => `${b.label} ${b.text}`).join(', ')}`}>
+      <figcaption>{f.opIncome.unit}<span>흑자전환 전망</span></figcaption>
+      <div class="plot" aria-hidden="true">
+        <span class="zero" style={`top:${zero}%`}></span>
+        {bars.map((b) => (
+          <div class="col">
+            <span class:list={['bar', { neg: b.value < 0, hi: b.highlight }]} style={`top:${b.top}%;height:${Math.max(b.h, 1.2)}%`}></span>
+            <span class:list={['val num', { neg: b.value < 0, hi: b.highlight }]} style={b.value >= 0 ? `top:calc(${b.top}% - 22px)` : `top:calc(${b.top + b.h}% + 4px)`}>{b.text}</span>
+          </div>
+        ))}
+      </div>
+      <div class="xs" aria-hidden="true">{bars.map((b) => <span class:list={{ hi: b.highlight }}>{b.label}</span>)}</div>
+      <p class="src">Source: {f.opIncome.source}</p>
+    </figure>
+  </div>
+</article>
+
+<style>
+  .fh {
+    position: relative; display: grid; grid-template-columns: 55fr 45fr; gap: 48px;
+    padding: 40px; border: 1px solid var(--line); border-radius: 12px; background: #fff;
+    transition: box-shadow var(--dur) var(--ease), border-color var(--dur);
+  }
+  .fh:hover { border-color: var(--line-strong); box-shadow: 0 10px 30px rgba(20, 43, 73, 0.06); }
+
+  .body { display: flex; flex-direction: column; }
+  .meta { display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  .cat { color: var(--accent); }
+  .tag { padding: 2px 8px; border: 1px solid var(--line-strong); border-radius: 4px; color: var(--ink-3); font-size: 11px; }
+  .org { margin-top: 24px; font-size: 15px; font-weight: 700; color: var(--ink); }
+  .org span { margin-left: 8px; font-weight: 500; color: var(--ink-3); font-size: 13px; }
+  h3 { margin-top: 8px; font-size: 30px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.35; }
+  .stretch::after { content: ''; position: absolute; inset: 0; border-radius: 12px; }
+  .thesis { margin-top: 20px; font-size: 16px; line-height: 1.7; color: var(--ink-2); }
+  .drivers { margin-top: 24px; border-top: 1px solid var(--line); }
+  .drivers li { display: grid; grid-template-columns: 28px 96px 1fr; gap: 8px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14px; line-height: 1.55; }
+  .dn { font-size: 12px; font-weight: 700; color: var(--accent); padding-top: 1px; }
+  .drivers b { color: var(--ink); font-weight: 700; }
+  .dt { color: var(--ink-2); }
+  .role { margin-top: 18px; font-size: 14px; color: var(--ink-3); }
+  .k {
+    display: inline-block; min-width: 56px; margin-right: 10px; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); vertical-align: 1px;
+  }
+  .links { margin-top: auto; padding-top: 28px; display: flex; align-items: center; gap: 24px; }
+  .pdf { position: relative; z-index: 1; display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; color: var(--ink-3); }
+  .pdf:hover { color: var(--ink); }
+  .fh:hover .more .arr { transform: translateX(4px); }
+
+  .panel { background: var(--tint); border-radius: 8px; padding: 28px; display: flex; flex-direction: column; gap: 28px; }
+  .call { display: flex; align-items: center; justify-content: space-between; }
+  .badge { padding: 4px 12px; border-radius: 4px; background: var(--navy); color: #fff; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; }
+  .asof { font-size: 12px; color: var(--ink-3); }
+  .figs { margin-top: 18px; display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 16px; align-items: end; }
+  dt { font-size: 12px; color: var(--ink-3); }
+  dd { margin-top: 2px; font-size: 24px; font-weight: 700; color: var(--ink); line-height: 1.2; }
+  .tp dd { font-size: 40px; letter-spacing: -0.03em; }
+  dd.up { color: var(--accent); }
+  dd.sm { font-size: 18px; font-weight: 600; color: var(--ink-2); }
+
+  .chart { border-top: 1px solid var(--line-strong); padding-top: 18px; }
+  figcaption { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-3); }
+  figcaption span { color: var(--accent); font-weight: 600; }
+  .plot { position: relative; height: 150px; margin-top: 30px; margin-bottom: 26px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .zero { position: absolute; left: 0; right: 0; height: 1px; background: var(--ink-3); }
+  .col { position: relative; }
+  .bar { position: absolute; left: 18%; right: 18%; background: var(--navy-light); border-radius: 2px; }
+  .bar.neg { background: var(--line-strong); }
+  .bar.hi { background: var(--navy); }
+  .val { position: absolute; left: 0; right: 0; text-align: center; font-size: 12px; font-weight: 600; color: var(--ink-2); }
+  .val.neg { color: var(--ink-3); }
+  .val.hi { color: var(--navy); font-weight: 700; }
+  .xs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; text-align: center; font-size: 12px; color: var(--ink-3); }
+  .xs .hi { color: var(--navy); font-weight: 700; }
+  .src { margin-top: 10px; font-size: 11px; color: var(--ink-3); }
+
+  @media (prefers-reduced-motion: reduce) { .fh { transition: none; } }
+  @media (max-width: 1100px) {
+    .fh { grid-template-columns: 1fr; gap: 32px; }
+  }
+  @media (max-width: 900px) {
+    .fh { padding: 24px 20px; }
+    h3 { font-size: 24px; }
+    .thesis { font-size: 15px; }
+    .panel { padding: 20px; }
+    .tp dd { font-size: 32px; }
+    dd { font-size: 20px; }
+    .figs { grid-template-columns: 1fr 1fr; }
+    .tp { grid-column: 1 / -1; }
+    .k { display: block; margin-bottom: 2px; }
+    /* 모바일: 투자포인트는 상세 페이지로 넘기고, 투자의견 수치가 먼저 보이게 줄인다 */
+    .drivers { display: none; }
+  }
+</style>
