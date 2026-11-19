@@ -20,7 +20,7 @@ export const hanwhaSolutions: CaseStudy = {
     { label: 'ROLE', value: '단독 작성' },
     { label: 'SCOPE', value: '산업분석 · 실적 추정 · Valuation' },
     { label: 'ORGANIZATION', value: 'SWIC Equity Research' },
-    { label: 'DELIVERABLE', value: '리포트 18p' },
+    { label: 'DELIVERABLE', value: '리포트 18p', links: [{ text: '리포트 18p (PDF) ↗', href: '/reports/hanwha-solutions.pdf' }] },
   ],
   kpis: [
     { value: '43,300', unit: '원', label: '목표주가 · BUY' },
@@ -145,6 +145,7 @@ export const hanwhaSolutions: CaseStudy = {
           kind: 'outcome',
           headline: '목표주가 43,300원 · 투자의견 BUY',
           body: '산업분석, 기업분석, 실적 추정, Valuation, 최종 작성 전 과정 단독 수행',
+          pdf: '/reports/hanwha-solutions.pdf',
           cover: { org: 'SWIC', rating: 'BUY', name: '한화솔루션' },
         },
       ],

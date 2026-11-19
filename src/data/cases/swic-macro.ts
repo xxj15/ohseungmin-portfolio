@@ -19,7 +19,7 @@ export const swicMacro: CaseStudy = {
     { label: 'ROLE', value: '개인 리포트 2건 작성 · 발표' },
     { label: 'PERIOD', value: '2026.03 · 2026.05' },
     { label: 'ORGANIZATION', value: 'SWIC Multi-Asset Macro' },
-    { label: 'DELIVERABLE', value: '리포트 9p · 14p' },
+    { label: 'DELIVERABLE', value: '리포트 9p · 14p', links: [{ text: '미국 경기 9p ↗', href: '/reports/us-macro.pdf' }, { text: '원화 14p ↗', href: '/reports/krw.pdf' }] },
   ],
   kpis: [
     { value: '2', unit: '건', label: '개인 리포트' },

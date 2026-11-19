@@ -26,9 +26,9 @@ export const site = {
     { no: '04', title: '결론 도출', en: 'RECOMMEND', body: 'Peer 3사 Forward EV/EBITDA 평균 10.3배 적용, 목표주가 43,300원 · BUY', source: '한화솔루션 Equity Research' },
   ] as ApproachRow[],
   research: [
-    { tag: 'EQUITY · 한화솔루션 · 2026.09 · 18p', title: 'Cellf-made Orange', summary: 'AI 전력 수요 확대와 미국 공급망 규제를 근거로 흑자전환 전망, BUY 의견 제시' },
-    { tag: 'MACRO · 원화(KRW) · 2026.05 · 14p', title: '애국합시다', summary: 'WGBI 편입 자금과 반도체 수출 호조를 근거로 중장기 원화 강세 전망' },
-    { tag: 'MACRO · 미국 경기 · 2026.03 · 9p', title: '걱정은 Kevin Warsh가 Wash~', summary: '금리 인하와 QT 병행 시나리오에서 불 스티프닝 전개, 단기채·중소형주 비중 확대 제시' },
+    { tag: 'EQUITY · 한화솔루션 · 2026.09 · 18p', title: 'Cellf-made Orange', summary: 'AI 전력 수요 확대와 미국 공급망 규제를 근거로 흑자전환 전망, BUY 의견 제시', pdf: '/reports/hanwha-solutions.pdf' },
+    { tag: 'MACRO · 원화(KRW) · 2026.05 · 14p', title: '애국합시다', summary: 'WGBI 편입 자금과 반도체 수출 호조를 근거로 중장기 원화 강세 전망', pdf: '/reports/krw.pdf' },
+    { tag: 'MACRO · 미국 경기 · 2026.03 · 9p', title: '걱정은 Kevin Warsh가 Wash~', summary: '금리 인하와 QT 병행 시나리오에서 불 스티프닝 전개, 단기채·중소형주 비중 확대 제시', pdf: '/reports/us-macro.pdf' },
   ] as ResearchItem[],
   about: [
     {
@@ -49,5 +49,5 @@ export const site = {
       ],
     },
   ] as AboutGroup[],
-  contact: { linkedin: 'https://www.linkedin.com/in/seungmin-oh-8ab8a3351/' } as Contact,
+  contact: { email: 'dhtmdals4@naver.com', linkedin: 'https://www.linkedin.com/in/seungmin-oh-8ab8a3351/' } as Contact,
 };

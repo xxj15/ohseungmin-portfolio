@@ -12,10 +12,17 @@ test('섹션 순서와 제목', async ({ page }) => {
   await expect(page.locator('main h2')).toHaveText(['주요 프로젝트', '분석 방식', '리서치 리포트', '소개']);
 });
 
-test('자료 없음 항목 숨김: 이력서·리포트 PDF', async ({ page }) => {
+test('이력서는 없어서 숨김, 리포트 PDF 3개는 링크', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByText('이력서 PDF')).toHaveCount(0);
-  await expect(page.locator('#research a', { hasText: 'PDF' })).toHaveCount(0);
+  const pdfs = page.locator('#research a', { hasText: 'PDF' });
+  await expect(pdfs).toHaveCount(3);
+  for (const a of await pdfs.all()) {
+    const res = await page.request.get(new URL((await a.getAttribute('href'))!, page.url()).href);
+    expect(res.status()).toBe(200);
+    expect(res.headers()['content-type']).toContain('pdf');
+  }
+  await expect(page.locator('#about a[href="mailto:dhtmdals4@naver.com"]')).toHaveCount(1);
   await expect(page.locator('#research blockquote')).toHaveText(['Cellf-made Orange', '애국합시다', '걱정은 Kevin Warsh가 Wash~']);
 });
 
@@ -30,5 +37,17 @@ test('모든 섹션 배경 흰색', async ({ page }) => {
   expect(sections.length).toBeGreaterThanOrEqual(4);
   for (const s of sections) {
     await expect(s).toHaveCSS('background-color', /rgb\(255, 255, 255\)|rgba\(0, 0, 0, 0\)/);
+  }
+});
+
+test('케이스 상세: 리포트가 있는 케이스만 PDF 링크', async ({ page }) => {
+  await page.goto('/work/hanwha-solutions/');
+  await expect(page.locator('a[href$="/reports/hanwha-solutions.pdf"]')).toHaveCount(2); // 사실표 + 결과 버튼
+  await page.goto('/work/swic-macro/');
+  await expect(page.locator('a[href$="/reports/us-macro.pdf"]')).toHaveCount(1);
+  await expect(page.locator('a[href$="/reports/krw.pdf"]')).toHaveCount(1);
+  for (const slug of ['hd-hyundai-heavy', 'confidential-im', 'bok-competition', 'rci-financial', 'moon-sun-power']) {
+    await page.goto(`/work/${slug}/`);
+    await expect(page.locator('a[href$=".pdf"]')).toHaveCount(0);
   }
 });

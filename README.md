@@ -29,7 +29,7 @@ npm test         # 빌드 후 Playwright 테스트 (설치된 Chrome 사용)
 | 이력서 PDF | `public/<파일>.pdf` | `site.ts`의 `contact.resumePdf: '/<파일>.pdf'` → 상단 메뉴 버튼 + 소개의 연락처 묶음 |
 | 이메일 · LinkedIn | — | `site.ts`의 `contact.email`, `contact.linkedin` → 소개 섹션의 연락처 묶음에 표시 |
 
-`tests/data.spec.ts`의 "site 현재 상태: 자료 없음" 테스트는 자료를 넣으면 실패하므로 함께 지우거나 고칩니다.
+`tests/data.spec.ts`의 "site 현재 상태" 테스트는 지금 데이터 상태를 그대로 적어 두므로, 자료를 넣으면 함께 고칩니다. 이력서를 넣으면 `tests/filled.spec.ts`는 지웁니다.
 
 비공개 자료(SG Fenero IM 장표, 공개 여부 미확인 장표)는 `public/`에 넣지 않습니다.
 

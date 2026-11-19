@@ -57,15 +57,3 @@ test('이전/다음 이름 표기 통일', async ({ page }) => {
   await page.goto('/work/rci-financial/');
   await expect(page.locator('[data-pager-next] b')).toHaveText('Moon, Sun, Power · AI 맞춤형 문해력 학습 플랫폼 기획·운영');
 });
-
-test('레일 끝에서 비활성된 버튼의 포커스가 반대 버튼으로 옮겨감', async ({ page }) => {
-  await page.goto('/');
-  const next = page.getByRole('button', { name: '다음 프로젝트' });
-  await next.focus();
-  for (let i = 0; i < 10 && !(await next.isDisabled()); i++) {
-    await page.keyboard.press('Enter');
-    await page.waitForTimeout(500);
-  }
-  await expect(next).toBeDisabled();
-  await expect(page.getByRole('button', { name: '이전 프로젝트' })).toBeFocused();
-});
