@@ -1,0 +1,33 @@
+---
+import type { CaseStudy } from '../../data/types';
+import { casePath, withBase } from '../../lib/paths';
+
+interface Props { prev?: CaseStudy; next?: CaseStudy }
+const { prev, next } = Astro.props;
+const label = (c: CaseStudy) => `${c.card.org === 'CONFIDENTIAL' ? 'Confidential' : c.card.org} · ${c.title}`;
+---
+
+<nav class="pager" aria-label="다른 프로젝트">
+  <a href={prev ? casePath(prev.slug) : withBase('/#work')} data-pager-prev>
+    <span>← PREV</span><b>{prev ? label(prev) : '목록으로'}</b>
+  </a>
+  <a href={next ? casePath(next.slug) : withBase('/#work')} data-pager-next>
+    <span>NEXT →</span><b>{next ? label(next) : '목록으로'}</b>
+  </a>
+</nav>
+
+<style>
+  .pager { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); margin-top: 40px; }
+  a { padding: 40px 0; display: block; }
+  a:last-child { text-align: right; border-left: 1px solid var(--line); padding-left: 40px; }
+  a:first-child { padding-right: 40px; }
+  span { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-3); }
+  b { display: block; margin-top: 10px; font-size: 20px; font-weight: 500; line-height: 1.45; }
+  a:hover b { color: var(--navy); }
+  @media (max-width: 900px) {
+    .pager { grid-template-columns: 1fr; }
+    a, a:first-child, a:last-child { padding: 24px 0; text-align: left; border-left: 0; }
+    a:last-child { border-top: 1px solid var(--line); }
+    b { font-size: 16px; }
+  }
+</style>

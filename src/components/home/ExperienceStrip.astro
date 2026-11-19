@@ -1,0 +1,25 @@
+---
+import { site } from '../../data/site';
+---
+
+<div class="strip" aria-label="경력">
+  <div class="wrap row">
+    <span class="eyebrow label">Experience</span>
+    <ul>
+      {site.experience.map((name) => <li>{name}</li>)}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 22px 0; }
+  .row { display: flex; align-items: center; gap: 28px; }
+  .label { font-size: 11px; flex-shrink: 0; }
+  ul { display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 15px; color: var(--ink-2); }
+  li + li::before { content: '·'; color: var(--line-strong); margin-right: 28px; }
+  @media (max-width: 900px) {
+    .row { flex-direction: column; align-items: flex-start; gap: 12px; }
+    ul { gap: 6px 14px; font-size: 13px; }
+    li + li::before { margin-right: 14px; }
+  }
+</style>

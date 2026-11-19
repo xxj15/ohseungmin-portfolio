@@ -1,0 +1,28 @@
+---
+import type { Rich } from '../../../data/types';
+interface Props { items: { key: string; title: string; bullets: Rich[]; result?: string }[] }
+const { items } = Astro.props;
+---
+
+<div class="ws">
+  {items.map((w) => (
+    <div class="wc">
+      <p class="key">{w.key}</p>
+      <h3>{w.title}</h3>
+      <ul>{w.bullets.map((b) => <li set:html={b} />)}</ul>
+      {w.result && <p class="res">{w.result}</p>}
+    </div>
+  ))}
+</div>
+
+<style>
+  .ws { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .wc { border: 1px solid var(--line); padding: 26px; }
+  .key { font-size: 11px; letter-spacing: 0.18em; color: var(--navy); font-weight: 600; }
+  h3 { margin-top: 8px; font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+  ul { margin-top: 14px; }
+  li { font-size: 14px; color: var(--ink-2); line-height: 1.7; padding: 6px 0 6px 16px; position: relative; border-top: 1px solid var(--line); }
+  li::before { content: ''; position: absolute; left: 0; top: 17px; width: 6px; height: 1px; background: var(--navy); }
+  .res { margin-top: 14px; font-size: 15px; font-weight: 600; color: var(--navy); }
+  @media (max-width: 900px) { .ws { grid-template-columns: 1fr; gap: 14px; } .wc { padding: 22px 20px; } }
+</style>

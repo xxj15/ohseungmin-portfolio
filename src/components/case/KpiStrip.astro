@@ -1,0 +1,37 @@
+---
+import type { Kpi } from '../../data/types';
+
+interface Props { kpis: Kpi[] }
+const { kpis } = Astro.props;
+---
+
+<div class="strip" data-kpi-strip>
+  <div class="wrap grid">
+    {kpis.map((k) => (
+      <div class="kpi" data-kpi>
+        <p class="n">{k.value}{k.unit && <small>{k.unit}</small>}</p>
+        <p class="l">{k.label}</p>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .strip { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); padding-top: 56px; padding-bottom: 56px; }
+  .kpi { padding: 0 24px; border-right: 1px solid var(--line); }
+  .kpi:first-child { padding-left: 0; }
+  .kpi:last-child { border-right: 0; }
+  .n { font-size: 44px; font-weight: 300; letter-spacing: -0.03em; line-height: 1.1; color: var(--navy); }
+  .n small { font-size: 20px; margin-left: 4px; }
+  .l { margin-top: 12px; font-size: 14px; color: var(--ink-3); }
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr 1fr; padding-top: 28px; padding-bottom: 28px; row-gap: 24px; }
+    .kpi { padding: 0 12px; }
+    .kpi:nth-child(odd) { padding-left: 0; }
+    .kpi:nth-child(2) { border-right: 0; }
+    .n { font-size: 28px; }
+    .n small { font-size: 14px; }
+    .l { font-size: 12px; margin-top: 6px; }
+  }
+</style>

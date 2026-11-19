@@ -1,0 +1,34 @@
+---
+import { site } from '../../data/site';
+import SectionHead from './SectionHead.astro';
+---
+
+<section id="approach" class="sec">
+  <div class="wrap">
+    <SectionHead no="02" label="APPROACH" title="분석 방식" />
+    <ol class="rows">
+      {site.approach.map((row) => (
+        <li class="row">
+          <span class="no">{row.no}</span>
+          <h3>{row.title}<small>{row.en}</small></h3>
+          <p><span set:html={row.body} /><small>{row.source}</small></p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .rows { margin-top: 64px; border-top: 1px solid var(--line); }
+  .row { display: grid; grid-template-columns: 120px 1fr 1.3fr; gap: 40px; padding: 38px 0; border-bottom: 1px solid var(--line); }
+  .no { font-size: 12px; letter-spacing: 0.2em; color: var(--ink-3); }
+  h3 { font-size: 22px; font-weight: 500; letter-spacing: -0.02em; }
+  h3 small { display: block; font-size: 12px; color: var(--ink-3); font-weight: 400; letter-spacing: 0.12em; margin-top: 6px; }
+  p { font-size: 15px; color: var(--ink-2); }
+  p small { display: block; margin-top: 6px; font-size: 13px; color: var(--ink-3); }
+  @media (max-width: 900px) {
+    .rows { margin-top: 32px; }
+    .row { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
+    h3 { font-size: 19px; }
+  }
+</style>

@@ -1,0 +1,32 @@
+---
+import type { Block } from '../../data/types';
+import PartRenderer from './PartRenderer.astro';
+
+interface Props { block: Block; index: number }
+const { block, index } = Astro.props;
+const no = String(index + 1).padStart(2, '0');
+---
+
+<section class="blk" data-block>
+  <div class="lab">
+    <p>{no} {block.label}</p>
+    <h2>{block.title}</h2>
+  </div>
+  <div class="body">
+    {block.parts.map((part) => <PartRenderer part={part} />)}
+  </div>
+</section>
+
+<style>
+  .blk { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 56px; padding: 88px 0; border-bottom: 1px solid var(--line); background: #fff; }
+  .blk:first-child { padding-top: 96px; }
+  .blk:last-of-type { border-bottom: 0; }
+  .lab p { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-3); font-weight: 600; }
+  .lab h2 { margin-top: 10px; font-size: 24px; letter-spacing: -0.02em; font-weight: 500; }
+  .body { display: flex; flex-direction: column; gap: 32px; min-width: 0; }
+  @media (max-width: 900px) {
+    .blk { grid-template-columns: 1fr; gap: 20px; padding: 48px 0; }
+    .blk:first-child { padding-top: 48px; }
+    .lab h2 { font-size: 21px; margin-top: 6px; }
+  }
+</style>

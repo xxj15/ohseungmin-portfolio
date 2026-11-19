@@ -1,0 +1,57 @@
+---
+import type { CaseStudy } from '../../data/types';
+import { withBase } from '../../lib/paths';
+
+interface Props { c: CaseStudy }
+const { c } = Astro.props;
+---
+
+<div class="wrap">
+  <p class="crumb"><a href={withBase('/#work')}>← 주요 프로젝트</a> <span>/ {c.no}</span></p>
+  <header class="head">
+    <p class="eyebrow">{c.eyebrow}</p>
+    <h1>{c.title}</h1>
+    <p class="org">{c.org}</p>
+    <dl class="facts">
+      {c.facts.map((f) => (
+        <div data-fact>
+          <dt>{f.label}</dt>
+          <dd>
+            {f.links && f.links.length > 0 ? (
+              f.links.map((link, i) => (
+                <>
+                  {i > 0 && ' · '}
+                  <a href={withBase(link.href)} target="_blank" rel="noopener">{link.text}</a>
+                </>
+              ))
+            ) : (
+              <span set:html={f.value} />
+            )}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </header>
+</div>
+
+<style>
+  .crumb { padding-top: 40px; font-size: 14px; color: var(--ink-3); }
+  .crumb a { color: var(--ink-2); }
+  .crumb span { margin-left: 6px; }
+  .head { padding: 56px 0 64px; }
+  h1 { margin-top: 28px; font-size: 60px; font-weight: 300; letter-spacing: -0.035em; line-height: 1.22; max-width: 980px; }
+  .org { margin-top: 20px; font-size: 18px; color: var(--ink-2); }
+  .facts { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ink); margin-top: 56px; }
+  .facts div { padding: 18px 20px 0 0; }
+  dt { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-3); }
+  dd { margin-top: 6px; font-size: 16px; font-weight: 500; }
+  dd a { color: var(--navy); border-bottom: 1px solid var(--navy); }
+  @media (max-width: 900px) {
+    .crumb { padding-top: 24px; }
+    .head { padding: 32px 0 40px; }
+    h1 { margin-top: 18px; font-size: 32px; line-height: 1.3; }
+    .org { font-size: 16px; margin-top: 12px; }
+    .facts { grid-template-columns: 1fr 1fr; margin-top: 32px; row-gap: 16px; }
+    dd { font-size: 14px; }
+  }
+</style>

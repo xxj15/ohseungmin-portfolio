@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+dist-*/
+.astro/
+
+# test output
+test-results/
+playwright-report/
+
+# local agent workspace
+.superpowers/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 인벤토리 원문: 비공개 내용 포함, 로컬 전용
+docs/superpowers/*인벤토리*

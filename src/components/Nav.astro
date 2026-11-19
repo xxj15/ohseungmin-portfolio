@@ -1,0 +1,48 @@
+---
+import { withBase } from '../lib/paths';
+
+interface Props {
+  showResume: boolean;
+  resumeHref?: string;
+  showContact: boolean;
+}
+const { showResume, resumeHref, showContact } = Astro.props;
+const items = [
+  { label: 'Work', href: '/#work' },
+  { label: 'Approach', href: '/#approach' },
+  { label: 'Research', href: '/#research' },
+  { label: 'About', href: '/#about' },
+  ...(showContact ? [{ label: 'Contact', href: '/#contact' }] : []),
+];
+---
+
+<nav aria-label="주 메뉴">
+  <div class="wrap nav-inner">
+    <a class="logo" href={withBase('/')}>오승민</a>
+    <div class="menu">
+      {items.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+    </div>
+    <div class="nav-end">
+      {showResume && resumeHref && <a class="btn btn--line btn--sm" href={resumeHref}>이력서 PDF</a>}
+    </div>
+  </div>
+</nav>
+
+<style>
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(12px); }
+  .nav-inner { height: var(--nav-height); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .logo { font-size: 19px; font-weight: 600; letter-spacing: -0.02em; }
+  .menu { display: flex; gap: 34px; font-size: 14px; color: var(--ink-2); }
+  .menu a:hover { color: var(--ink); }
+  .nav-end { min-width: 110px; display: flex; justify-content: flex-end; }
+  @media (max-width: 900px) {
+    .nav-inner { height: 60px; }
+    .menu { gap: 16px; font-size: 13px; }
+    .nav-end { display: none; }
+  }
+  @media (max-width: 420px) {
+    .nav-inner { gap: 12px; }
+    .logo { font-size: 17px; }
+    .menu { gap: 10px; font-size: 12px; }
+  }
+</style>

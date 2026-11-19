@@ -1,0 +1,38 @@
+---
+import { site } from '../../data/site';
+import { contactItems, hasContact } from '../../lib/content';
+import { withBase } from '../../lib/paths';
+import SectionHead from './SectionHead.astro';
+
+const items = contactItems(site.contact);
+const show = hasContact(site.contact);
+---
+
+{
+  show && (
+    <section id="contact" class="sec">
+      <div class="wrap row">
+        <div>
+          <SectionHead no="05" label="CONTACT" title="연락처" />
+          <ul class="big">
+            {items.map((item) => (
+              <li>
+                <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel="noopener">
+                  {item.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        {site.contact.resumePdf && (
+          <a class="btn btn--fill" href={withBase(site.contact.resumePdf)}>이력서 PDF 받기 →</a>
+        )}
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .row { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; }
+  .big { margin-top: 40px; font-size: 20px; line-height: 2; }
+</style>

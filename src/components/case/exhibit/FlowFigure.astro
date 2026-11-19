@@ -1,0 +1,38 @@
+---
+import type { Figure } from '../../../data/types';
+interface Props { steps: Extract<Figure, { type: 'flow' }>['steps']; highlightLast?: boolean; arrows?: boolean }
+const { steps, highlightLast = false, arrows = true } = Astro.props;
+---
+
+<ol class:list={['flow', { hi: highlightLast, arrows }]} data-flow data-arrows={String(arrows)}>
+  {steps.map((s) => (
+    <li class="st">
+      {s.key && <span class="k">{s.key}</span>}
+      <b>{s.title}</b>
+      {s.note && <small>{s.note}</small>}
+    </li>
+  ))}
+</ol>
+
+<style>
+  .flow { display: flex; align-items: stretch; margin-top: 20px; }
+  .st { flex: 1; border: 1px solid var(--line); padding: 18px 16px; position: relative; background: #fff; min-width: 0; }
+  .st + .st { border-left: 0; }
+  .k { display: block; font-size: 11px; letter-spacing: 0.15em; color: var(--navy); font-weight: 600; }
+  b { display: block; margin-top: 6px; font-size: 15px; font-weight: 600; line-height: 1.45; }
+  .k + b { margin-top: 6px; }
+  small { display: block; margin-top: 6px; font-size: 12px; color: var(--ink-3); line-height: 1.6; }
+  .arrows .st:not(:last-child)::after {
+    content: '→'; position: absolute; right: -11px; top: 50%; transform: translateY(-50%); width: 22px; height: 22px;
+    background: #fff; border: 1px solid var(--line); border-radius: 50%; font-size: 11px; display: flex;
+    align-items: center; justify-content: center; color: var(--navy); z-index: 2;
+  }
+  .hi .st:last-child { border: 1.5px solid var(--navy); }
+  .hi .st:last-child b { color: var(--navy); }
+  @media (max-width: 900px) {
+    .flow { flex-direction: column; }
+    .st + .st { border-left: 1px solid var(--line); border-top: 0; }
+    .arrows .st:not(:last-child)::after { content: '↓'; right: auto; left: 50%; top: auto; bottom: -11px; transform: translateX(-50%); }
+    .hi .st:last-child { border: 1.5px solid var(--navy); }
+  }
+</style>

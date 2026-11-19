@@ -1,0 +1,58 @@
+---
+import type { Figure } from '../../../data/types';
+interface Props { figure: Extract<Figure, { type: 'line' }> }
+const { figure } = Astro.props;
+
+const W = 680;
+const H = 220;
+const PAD = 34;
+const all = figure.series.flatMap((s) => s.values);
+const hi = Math.ceil(Math.max(...all, 0) / 5) * 5 + 5;
+const lo = Math.floor(Math.min(...all, 0) / 5) * 5 - 5;
+const n = figure.xLabels.length;
+const x = (i: number) => PAD + (i * (W - 2 * PAD)) / (n - 1);
+const y = (v: number) => 14 + ((hi - v) * (H - 40)) / (hi - lo);
+const points = (values: number[]) => values.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+const NAVY = '#1b3a78';
+const MUTED = '#b7c0d1';
+---
+
+<div class="line">
+  <div class="plot">
+  <svg viewBox={`0 0 ${W} ${H + 6}`} role="img" aria-label={figure.series.map((s) => `${s.name}: ${s.values.join(figure.unit + ', ')}${figure.unit}`).join(' / ')}>
+    <line x1={PAD} x2={W - PAD} y1={y(0)} y2={y(0)} stroke="#cdd4df" stroke-dasharray="3 3" />
+    {figure.series.filter((s) => s.muted).map((s) => (
+      <g>
+        <polyline points={points(s.values)} fill="none" stroke={MUTED} stroke-width="2.5" stroke-dasharray="6 4" />
+        {s.values.map((v, i) => <circle cx={x(i)} cy={y(v)} r="4" fill={MUTED} />)}
+      </g>
+    ))}
+    {figure.series.filter((s) => !s.muted).map((s) => (
+      <g>
+        <polyline points={points(s.values)} fill="none" stroke={NAVY} stroke-width="2.5" />
+        {s.values.map((v, i) => <circle cx={x(i)} cy={y(v)} r="4" fill={NAVY} />)}
+        {s.values.map((v, i) => (
+          <text x={x(i)} y={y(v) - 11} font-size="12" font-weight="600" fill={NAVY} text-anchor="middle" data-point-label>{`${v}${figure.unit}`}</text>
+        ))}
+      </g>
+    ))}
+    {figure.xLabels.map((label, i) => <text x={x(i)} y={H} font-size="12" fill="#7a8090" text-anchor="middle">{label}</text>)}
+  </svg>
+  </div>
+  <ul class="legend">
+    {figure.series.map((s) => <li class:list={{ muted: s.muted }}>{s.name}</li>)}
+  </ul>
+</div>
+
+<style>
+  .line { margin-top: 28px; }
+  svg { width: 100%; height: auto; display: block; font-family: inherit; }
+  .plot { overflow-x: auto; }
+  @media (max-width: 900px) {
+    svg { min-width: 560px; }
+    svg :global(text) { font-size: 15px; }
+  }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 12px; color: var(--ink-2); margin-top: 8px; }
+  .legend li::before { content: ''; display: inline-block; width: 16px; height: 0; border-top: 2.5px solid var(--navy); vertical-align: middle; margin-right: 6px; }
+  .legend li.muted::before { border-top: 2.5px dashed #b7c0d1; }
+</style>

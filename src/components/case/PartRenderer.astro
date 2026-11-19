@@ -1,0 +1,27 @@
+---
+import type { Part } from '../../data/types';
+import ListPart from './parts/ListPart.astro';
+import QuestionPart from './parts/QuestionPart.astro';
+import ParagraphPart from './parts/ParagraphPart.astro';
+import NoticePart from './parts/NoticePart.astro';
+import ThesisPart from './parts/ThesisPart.astro';
+import CardsPart from './parts/CardsPart.astro';
+import WorkstreamsPart from './parts/WorkstreamsPart.astro';
+import ReportsPart from './parts/ReportsPart.astro';
+import OutcomePart from './parts/OutcomePart.astro';
+import ExhibitFigure from './exhibit/ExhibitFigure.astro';
+
+interface Props { part: Part }
+const { part } = Astro.props;
+---
+
+{part.kind === 'list' && <ListPart items={part.items} />}
+{part.kind === 'question' && <QuestionPart text={part.text} />}
+{part.kind === 'paragraph' && <ParagraphPart text={part.text} />}
+{part.kind === 'notice' && <NoticePart text={part.text} />}
+{part.kind === 'thesis' && <ThesisPart items={part.items} />}
+{part.kind === 'cards' && <CardsPart items={part.items} />}
+{part.kind === 'workstreams' && <WorkstreamsPart items={part.items} />}
+{part.kind === 'reports' && <ReportsPart items={part.items} />}
+{part.kind === 'outcome' && <OutcomePart part={part} />}
+{part.kind === 'exhibit' && <ExhibitFigure exhibit={part.exhibit} />}

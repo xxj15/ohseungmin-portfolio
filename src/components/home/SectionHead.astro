@@ -1,0 +1,20 @@
+---
+interface Props {
+  no: string;
+  label: string;
+  title: string;
+}
+const { no, label, title } = Astro.props;
+---
+
+<div class="head">
+  <div>
+    <p class="sec-label"><span>{no}</span>{label}</p>
+    <h2 class="h2">{title}</h2>
+  </div>
+  <slot />
+</div>
+
+<style>
+  .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+</style>

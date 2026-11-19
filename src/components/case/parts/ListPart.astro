@@ -1,0 +1,15 @@
+---
+import type { Rich } from '../../../data/types';
+interface Props { items: Rich[] }
+const { items } = Astro.props;
+---
+
+<ul class="bul">{items.map((item) => <li set:html={item} />)}</ul>
+
+<style>
+  .bul { max-width: 780px; }
+  li { position: relative; padding: 14px 0 14px 22px; border-bottom: 1px solid var(--line); font-size: 16px; color: var(--ink-2); }
+  li::before { content: ''; position: absolute; left: 0; top: 25px; width: 8px; height: 1px; background: var(--navy); }
+  li :global(b) { color: var(--ink); font-weight: 600; }
+  @media (max-width: 900px) { li { font-size: 15px; } li::before { top: 24px; } }
+</style>

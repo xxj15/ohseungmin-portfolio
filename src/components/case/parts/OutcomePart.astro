@@ -1,0 +1,36 @@
+---
+import type { Part } from '../../../data/types';
+import { withBase } from '../../../lib/paths';
+
+interface Props { part: Extract<Part, { kind: 'outcome' }> }
+const { part } = Astro.props;
+---
+
+<div class="out">
+  {part.cover && (
+    <div class="mini" aria-hidden="true">
+      <i></i>
+      <div>{part.cover.org}<b>{part.cover.rating}</b><span>{part.cover.name}</span></div>
+    </div>
+  )}
+  <div>
+    <p class="head">{part.headline}</p>
+    {part.body && <p class="body">{part.body}</p>}
+    {part.pdf && (
+      <a class="btn btn--fill" href={withBase(part.pdf)} target="_blank" rel="noopener">리포트 PDF 보기 ↗</a>
+    )}
+  </div>
+</div>
+
+<style>
+  .out { display: flex; gap: 28px; align-items: center; }
+  .mini { width: 150px; aspect-ratio: 1 / 1.3; border: 1px solid var(--line); display: flex; flex-shrink: 0; }
+  .mini i { width: 12px; background: var(--navy-deep); }
+  .mini div { padding: 14px 12px; font-size: 10px; font-weight: 800; color: var(--navy-deep); }
+  .mini b { display: block; margin-top: 12px; font-size: 20px; font-weight: 400; }
+  .mini span { display: block; margin-top: 2px; font-size: 12px; color: var(--ink); }
+  .head { font-size: 22px; font-weight: 500; letter-spacing: -0.02em; }
+  .body { margin-top: 8px; color: var(--ink-2); max-width: 760px; }
+  .btn { margin-top: 20px; }
+  @media (max-width: 900px) { .out { flex-direction: column; align-items: flex-start; gap: 20px; } .mini { width: 110px; } .head { font-size: 19px; } }
+</style>

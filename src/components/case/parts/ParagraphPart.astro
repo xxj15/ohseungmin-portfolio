@@ -1,0 +1,13 @@
+---
+import type { Rich } from '../../../data/types';
+interface Props { text: Rich }
+const { text } = Astro.props;
+---
+
+<p class="para" set:html={text} />
+
+<style>
+  .para { font-size: 17px; color: var(--ink-2); line-height: 1.85; max-width: 760px; }
+  .para :global(b) { color: var(--ink); font-weight: 600; }
+  @media (max-width: 900px) { .para { font-size: 15px; } }
+</style>

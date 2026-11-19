@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/paths';
+---
+
+<BaseLayout title="페이지를 찾을 수 없습니다 | 오승민" noindex>
+  <section class="wrap nf">
+    <p class="eyebrow">404</p>
+    <h1>페이지를 찾을 수 없습니다</h1>
+    <a class="btn btn--fill" href={withBase('/')}>홈으로</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .nf { padding: 140px 0 120px; }
+  h1 { margin: 24px 0 40px; font-size: 48px; font-weight: 300; letter-spacing: -0.03em; }
+</style>

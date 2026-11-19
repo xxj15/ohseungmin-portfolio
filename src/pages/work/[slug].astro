@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CaseHeader from '../../components/case/CaseHeader.astro';
+import KpiStrip from '../../components/case/KpiStrip.astro';
+import BlockSection from '../../components/case/BlockSection.astro';
+import Pager from '../../components/case/Pager.astro';
+import { cases } from '../../data/cases';
+import type { CaseStudy } from '../../data/types';
+import { neighbors } from '../../lib/content';
+
+export function getStaticPaths() {
+  return cases.map((c) => ({ params: { slug: c.slug }, props: { c } }));
+}
+
+interface Props { c: CaseStudy }
+const { c } = Astro.props;
+const { prev, next } = neighbors(cases, c.slug);
+const titleOrg = c.card.org === 'CONFIDENTIAL' ? 'Confidential' : c.org;
+---
+
+<BaseLayout title={`${titleOrg} · ${c.title} | 오승민`}>
+  <CaseHeader c={c} />
+  <KpiStrip kpis={c.kpis} />
+  <div class="wrap">
+    {c.blocks.map((block, i) => <BlockSection block={block} index={i} />)}
+    <Pager prev={prev} next={next} />
+  </div>
+</BaseLayout>

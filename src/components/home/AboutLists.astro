@@ -1,0 +1,40 @@
+---
+import { site } from '../../data/site';
+import SectionHead from './SectionHead.astro';
+---
+
+<section id="about" class="sec">
+  <div class="wrap">
+    <SectionHead no="04" label="ABOUT" title="소개" />
+    <div class="lists">
+      {site.about.map((group) => (
+        <div>
+          <h3>{group.heading}</h3>
+          <dl>
+            {group.rows.map((row) => (
+              <div class="item">
+                <dt>{row.label}</dt>
+                <dd>
+                  {row.value}
+                  {row.sub && <small>{row.sub}</small>}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .lists { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 64px; }
+  h3 { font-size: 13px; letter-spacing: 0.2em; color: var(--ink-3); font-weight: 500; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  .item { display: grid; grid-template-columns: 120px 1fr; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+  dt { color: var(--ink-3); font-size: 14px; }
+  dd small { display: block; color: var(--ink-3); font-size: 13px; margin-top: 2px; }
+  @media (max-width: 900px) {
+    .lists { grid-template-columns: 1fr; gap: 40px; margin-top: 32px; }
+    .item { grid-template-columns: 88px 1fr; }
+  }
+</style>

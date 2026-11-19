@@ -1,0 +1,32 @@
+---
+import type { Figure } from '../../../data/types';
+interface Props { figure: Extract<Figure, { type: 'bars' }> }
+const { figure } = Astro.props;
+const max = Math.max(...figure.bars.map((b) => b.value));
+---
+
+<div class="chart">
+  <div class="plot">
+    {figure.bars.map((b) => (
+      <div class:list={['bar', { hi: b.highlight }]} style={`height:${((b.value / max) * 100).toFixed(1)}%`}>
+        <span data-bar-value>{b.display}</span>
+      </div>
+    ))}
+  </div>
+  <div class="ax">{figure.bars.map((b) => <span>{b.label}</span>)}</div>
+</div>
+
+<style>
+  .chart { margin-top: 36px; }
+  .plot { display: flex; align-items: flex-end; gap: 28px; height: 200px; padding: 0 8px; border-bottom: 1px solid var(--ink); }
+  .bar { flex: 1; background: var(--navy-tint); position: relative; }
+  .bar.hi { background: var(--navy); }
+  .bar span { position: absolute; top: -24px; left: 0; right: 0; text-align: center; font-size: 13px; font-weight: 600; }
+  .ax { display: flex; gap: 28px; padding: 8px 8px 0; font-size: 12px; color: var(--ink-3); }
+  .ax span { flex: 1; text-align: center; }
+  @media (max-width: 900px) {
+    .plot { height: 150px; gap: 12px; padding: 0 2px; }
+    .ax { gap: 12px; padding: 8px 2px 0; }
+    .bar span { font-size: 11px; top: -20px; }
+  }
+</style>

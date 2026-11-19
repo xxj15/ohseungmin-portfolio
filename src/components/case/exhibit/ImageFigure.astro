@@ -1,0 +1,14 @@
+---
+import type { Figure } from '../../../data/types';
+import { withBase } from '../../../lib/paths';
+interface Props { figure: Extract<Figure, { type: 'image' }> }
+const { figure } = Astro.props;
+---
+
+<div class="shot"><img src={withBase(figure.src)} alt={figure.alt} loading="lazy" decoding="async" /></div>
+
+<style>
+  .shot { margin-top: 20px; border: 1px solid var(--line); padding: 32px 40px 8px; background: #fff; }
+  img { width: 100%; height: auto; }
+  @media (max-width: 900px) { .shot { padding: 12px 8px 4px; } }
+</style>

@@ -1,0 +1,21 @@
+/* 디자인 토큰 — docs/superpowers/mockups 시안의 :root 최종값. 배경은 전부 흰색. */
+:root {
+  --surface: #ffffff;
+  --ink: #15192a;
+  --ink-2: #4b5263;
+  --ink-3: #7a8090;
+  --navy: #1b3a78;
+  --navy-deep: #0f1d3a;
+  --navy-light: #9fb3d9;
+  --navy-tint: #dbe2ef;
+  --line: #e3e6ec;
+  --line-strong: #cdd4df;
+
+  --font-sans: 'Pretendard Variable', Pretendard, -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+
+  --wrap: 1320px;
+  --gutter: 60px;
+  --gutter-mobile: 20px;
+  --nav-height: 76px;
+  --section-pad: 120px;
+}

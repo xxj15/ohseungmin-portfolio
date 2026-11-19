@@ -1,0 +1,10 @@
+---
+interface Props { text: string }
+const { text } = Astro.props;
+---
+
+<p class="notice" role="note">{text}</p>
+
+<style>
+  .notice { background: #fff; border: 1px solid var(--line); border-left: 3px solid var(--navy); padding: 16px 20px; font-size: 14px; color: var(--ink-2); max-width: 820px; }
+</style>

@@ -1,0 +1,39 @@
+---
+import type { Figure } from '../../../data/types';
+interface Props { figure: Extract<Figure, { type: 'hbars' }> }
+const { figure } = Astro.props;
+---
+
+<div class="hbars">
+  {figure.rows.map((r) => (
+    <div class:list={['row', { total: r.total }]}>
+      <span class="label">{r.label}</span>
+      <div class="track"><div class:list={['bar', r.tone]} style={`width:${r.width}%;margin-left:${r.offset ?? 0}%`}></div></div>
+      <span class="v">{r.value}</span>
+    </div>
+  ))}
+  {figure.result && (
+    <div class="row result">
+      <span class="label">{figure.result.label}</span>
+      <div class="track"></div>
+      <span class="v" data-hbars-result>{figure.result.value}</span>
+    </div>
+  )}
+</div>
+
+<style>
+  .hbars { margin-top: 24px; max-width: 780px; }
+  .row { display: grid; grid-template-columns: 200px minmax(0, 1fr) 130px; align-items: center; gap: 16px; padding: 9px 0; font-size: 14px; }
+  .bar { height: 18px; }
+  .bar.pos { background: var(--navy); }
+  .bar.neg { background: #c9d1df; }
+  .bar.base { background: var(--navy-tint); }
+  .v { text-align: right; font-weight: 600; }
+  .row.total { border-top: 1px solid var(--ink); margin-top: 6px; padding-top: 14px; }
+  .row.total .v, .result .v { color: var(--navy); font-size: 18px; }
+  @media (max-width: 900px) {
+    .row { grid-template-columns: minmax(0, 1fr) auto; gap: 6px 12px; font-size: 13px; }
+    .track { grid-column: 1 / -1; grid-row: 2; }
+    .result .track { display: none; }
+  }
+</style>

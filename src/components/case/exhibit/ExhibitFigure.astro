@@ -1,0 +1,37 @@
+---
+import type { Exhibit } from '../../../data/types';
+import BarsFigure from './BarsFigure.astro';
+import LineFigure from './LineFigure.astro';
+import TableFigure from './TableFigure.astro';
+import FlowFigure from './FlowFigure.astro';
+import PathsFigure from './PathsFigure.astro';
+import HBarsFigure from './HBarsFigure.astro';
+import ImageFigure from './ImageFigure.astro';
+
+interface Props { exhibit: Exhibit }
+const { exhibit } = Astro.props;
+const f = exhibit.figure;
+---
+
+<figure class="exhibit" data-exhibit>
+  <figcaption class="t"><span>Exhibit {exhibit.no}</span>{exhibit.title}</figcaption>
+  {f.type === 'bars' && <BarsFigure figure={f} />}
+  {f.type === 'line' && <LineFigure figure={f} />}
+  {f.type === 'table' && <TableFigure figure={f} />}
+  {f.type === 'flow' && <FlowFigure steps={f.steps} highlightLast={f.highlightLast} arrows={f.arrows ?? true} />}
+  {f.type === 'paths' && <PathsFigure figure={f} />}
+  {f.type === 'hbars' && <HBarsFigure figure={f} />}
+  {f.type === 'image' && <ImageFigure figure={f} />}
+  {exhibit.caption && <p class="cap" set:html={exhibit.caption} />}
+  {exhibit.source && <p class="src">Source: {exhibit.source}</p>}
+</figure>
+
+<style>
+  .exhibit { border: 1px solid var(--line); padding: 28px 32px 20px; background: #fff; min-width: 0; }
+  .t { font-size: 13px; font-weight: 600; }
+  .t span { color: var(--navy); margin-right: 8px; }
+  .cap { margin-top: 16px; font-size: 14px; color: var(--ink-2); }
+  .cap :global(b) { color: var(--ink); }
+  .src { margin-top: 18px; font-size: 12px; color: var(--ink-3); }
+  @media (max-width: 900px) { .exhibit { padding: 20px 16px 16px; } }
+</style>

@@ -1,0 +1,37 @@
+---
+import { site } from '../../data/site';
+import { withBase } from '../../lib/paths';
+import SectionHead from './SectionHead.astro';
+---
+
+<section id="research" class="sec">
+  <div class="wrap">
+    <SectionHead no="03" label="RESEARCH" title="리서치 리포트" />
+    <ul class="quotes">
+      {site.research.map((item) => (
+        <li class="q">
+          <p class="tag">{item.tag}</p>
+          <blockquote>{item.title}</blockquote>
+          <p class="sum">{item.summary}</p>
+          {item.pdf && (
+            <a class="pdf" href={withBase(item.pdf)} target="_blank" rel="noopener">PDF 보기 ↗</a>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; margin-top: 64px; }
+  .tag { font-size: 12px; letter-spacing: 0.12em; color: var(--navy); margin-bottom: 14px; }
+  blockquote { font-size: 26px; font-weight: 400; line-height: 1.5; letter-spacing: -0.01em; }
+  blockquote::before { content: '“'; color: var(--navy-light); }
+  blockquote::after { content: '”'; color: var(--navy-light); }
+  .sum { margin-top: 16px; font-size: 15px; color: var(--ink-2); line-height: 1.7; }
+  .pdf { display: inline-block; margin-top: 22px; font-size: 13px; color: var(--navy); border-bottom: 1px solid var(--navy); }
+  @media (max-width: 900px) {
+    .quotes { grid-template-columns: 1fr; gap: 40px; margin-top: 32px; }
+    blockquote { font-size: 22px; }
+  }
+</style>

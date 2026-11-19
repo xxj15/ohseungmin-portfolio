@@ -1,0 +1,37 @@
+---
+import type { Figure } from '../../../data/types';
+interface Props { figure: Extract<Figure, { type: 'table' }> }
+const { figure } = Astro.props;
+const cellClass = (tone: string | undefined, col: number) => {
+  if (tone === 'up' || tone === 'down') return figure.toneColumn === undefined || figure.toneColumn === col ? tone : undefined;
+  return undefined;
+};
+---
+
+<div class="scroll">
+  <table>
+    <thead>
+      <tr>{figure.head.map((h) => <th scope="col">{h}</th>)}</tr>
+    </thead>
+    <tbody>
+      {figure.rows.map((row) => (
+        <tr class={row.tone === 'strike' || row.tone === 'total' ? row.tone : undefined}>
+          {row.cells.map((cell, col) => <td class={cellClass(row.tone, col)}>{cell}</td>)}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .scroll { margin-top: 24px; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 460px; }
+  th { text-align: right; font-size: 11px; letter-spacing: 0.12em; color: var(--ink-3); font-weight: 500; padding: 0 0 10px; border-bottom: 1px solid var(--ink); }
+  td { padding: 12px 0; border-bottom: 1px solid var(--line); text-align: right; }
+  th:first-child, td:first-child { text-align: left; }
+  th + th, td + td { padding-left: 16px; }
+  td.up { color: var(--navy); font-weight: 700; }
+  td.down { color: #8a93a6; }
+  tr.strike td { color: var(--ink-3); text-decoration: line-through; }
+  tr.total td { font-weight: 700; color: var(--navy); border-bottom: 1px solid var(--ink); }
+</style>

@@ -1,0 +1,24 @@
+---
+import type { Figure } from '../../../data/types';
+import FlowFigure from './FlowFigure.astro';
+interface Props { figure: Extract<Figure, { type: 'paths' }> }
+const { figure } = Astro.props;
+---
+
+<div class="paths">
+  {figure.paths.map((p) => (
+    <div class:list={['path', { muted: p.muted }]}>
+      <p class="tag" data-path-tag>{p.tag}</p>
+      <FlowFigure steps={p.steps.map((title) => ({ title }))} />
+    </div>
+  ))}
+</div>
+
+<style>
+  .paths { display: grid; gap: 14px; margin-top: 8px; }
+  .path { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 16px; align-items: stretch; }
+  .path :global(.flow) { margin-top: 0; }
+  .tag { display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--navy); border: 1.5px solid var(--navy); background: #fff; }
+  .muted .tag { color: #6b7a99; border-color: #6b7a99; }
+  @media (max-width: 900px) { .path { grid-template-columns: 1fr; gap: 8px; } .tag { padding: 10px; } }
+</style>

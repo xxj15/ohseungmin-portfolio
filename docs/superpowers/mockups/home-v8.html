@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오승민 — 홈 시안 v8</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{
+    --ink:#15192a; --ink2:#4b5263; --ink3:#7a8090;
+    --navy:#1b3a78; --navy-deep:#0f1d3a; --navy-light:#9fb3d9;
+    --line:#e3e6ec; --subtle:#f4f5f8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#fff;color:var(--ink);font-family:'Pretendard Variable',Pretendard,-apple-system,sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;word-break:keep-all}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1320px;margin:0 auto;padding:0 60px}
+  .eyebrow{font-size:12px;letter-spacing:.25em;color:var(--ink3);font-weight:500;text-transform:uppercase}
+  .sec-label{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.2em;font-weight:600;color:var(--ink)}
+  .sec-label::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--navy)}
+  .sec-label span{color:var(--ink3);font-weight:500}
+  h2{font-size:56px;font-weight:300;letter-spacing:-.03em;line-height:1.2;margin-top:28px}
+
+  .note{background:#eef2f9;color:var(--navy-deep);font-size:13px;padding:10px;text-align:center}
+  nav .wrap{height:76px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-size:19px;font-weight:600;letter-spacing:-.02em}
+  .menu{display:flex;gap:34px;font-size:14px;color:var(--ink2)}
+  .status{font-size:13px;color:var(--ink3);display:flex;align-items:center;gap:8px}
+  .status::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--navy)}
+
+  .hero{padding:110px 0 100px}
+  .hero h1{margin-top:52px;font-size:84px;font-weight:300;letter-spacing:-.035em;line-height:1.14}
+  .hero h1 b{font-weight:600;color:var(--navy)}
+  .hero-foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:64px;gap:40px}
+  .hero-foot p{max-width:620px;font-size:19px;color:var(--ink2);line-height:1.65;font-weight:300}
+  .btns{display:flex;gap:12px;flex-shrink:0}
+  .b1,.b2{height:48px;padding:0 26px;display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:500}
+  .b1{background:var(--navy-deep);color:#fff}
+  .b2{border:1px solid var(--ink)}
+
+  .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;overflow:hidden}
+  .marquee .wrap{display:flex;align-items:center;gap:28px;white-space:nowrap;font-size:15px;color:var(--ink2)}
+  .marquee .eyebrow{font-size:11px;margin-right:12px}
+  .marquee i{font-style:normal;color:var(--line)}
+
+  section{padding:120px 0}
+  .head-row{display:flex;justify-content:space-between;align-items:flex-end}
+  .arrows{display:flex;gap:8px}
+  .arrows span{width:40px;height:40px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink3)}
+  .arrows span:last-child{border-color:var(--ink);color:var(--ink)}
+
+  .rail{display:flex;gap:24px;margin-top:56px;overflow:hidden;margin-right:-60px}
+  .card{flex:0 0 400px;border:1px solid var(--line);padding:36px 32px 32px;display:flex;flex-direction:column;min-height:440px}
+  .card .meta{font-size:11px;letter-spacing:.18em;color:var(--ink3);line-height:1.9;font-weight:500}
+  .card .meta b{display:block;color:var(--ink2);font-weight:600}
+  .card h3{margin-top:28px;font-size:24px;font-weight:500;letter-spacing:-.02em;line-height:1.4}
+  .card p{margin-top:16px;font-size:14px;color:var(--ink2);line-height:1.75}
+  .outcome{margin-top:auto;padding-top:22px;border-top:1px solid var(--line)}
+  .outcome .eyebrow{font-size:10px}
+  .outcome div:last-child{margin-top:8px;font-size:18px;color:var(--navy);font-weight:600;letter-spacing:-.01em;line-height:1.45}
+
+  .gray{background:var(--subtle)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:64px}
+  .two .eyebrow{font-size:11px;padding-bottom:16px;border-bottom:1px solid #d9dce3}
+  .two ul{list-style:none;margin-top:18px}
+  .two li{font-size:17px;padding:7px 0;display:flex;justify-content:space-between}
+  .two li span{font-size:13px;color:var(--ink3)}
+
+  .rows{margin-top:64px;border-top:1px solid var(--line)}
+  .r{display:grid;grid-template-columns:120px 1fr 1.3fr;gap:40px;padding:38px 0;border-bottom:1px solid var(--line)}
+  .r .no{font-size:12px;letter-spacing:.2em;color:var(--ink3)}
+  .r h4{font-size:22px;font-weight:500;letter-spacing:-.02em}
+  .r h4 small{display:block;font-size:12px;color:var(--ink3);font-weight:400;letter-spacing:.12em;margin-top:6px}
+  .r p{font-size:15px;color:var(--ink2)}
+  .r p b{color:var(--ink);font-weight:600}
+
+  .dark{background:var(--navy-deep);color:#e9edf5}
+  .dark .sec-label{color:#fff}.dark .sec-label span{color:var(--navy-light)}
+  .dark .arrows span{border-color:#2a3a5e;color:#6d7da0}.dark .arrows span:last-child{border-color:#fff;color:#fff}
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:56px;margin-top:64px}
+  .q blockquote{font-size:22px;font-weight:300;line-height:1.6;letter-spacing:-.01em}
+  .q blockquote::before{content:"“";color:var(--navy-light)}
+  .q blockquote::after{content:"”";color:var(--navy-light)}
+  .q .src{margin-top:22px;font-size:13px;color:var(--navy-light)}
+  .q .src a{display:inline-block;margin-top:6px;color:#fff;border-bottom:1px solid #4b5c82;font-size:13px}
+
+  .about{display:grid;grid-template-columns:5fr 7fr;gap:80px;margin-top:64px;align-items:start}
+  .photo{aspect-ratio:4/5;background:linear-gradient(160deg,#e7eaf0,#cfd5df);display:flex;align-items:center;justify-content:center;color:var(--ink3);font-size:14px}
+  .about h3{font-size:44px;font-weight:300;letter-spacing:-.03em;line-height:1.25}
+  .about p{margin-top:24px;font-size:16px;color:var(--ink2);line-height:1.85}
+  .about p b{color:var(--ink);font-weight:600}
+  .kv{margin-top:40px;border-top:1px solid var(--line)}
+  .kv div{display:grid;grid-template-columns:160px 1fr;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px}
+  .kv span{font-size:11px;letter-spacing:.2em;color:var(--ink3);padding-top:3px}
+
+  .contact{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end}
+  .contact .big{font-size:20px;margin-top:40px;line-height:2}
+  footer{border-top:1px solid var(--line);padding:28px 0;font-size:13px;color:var(--ink3)}
+  footer .wrap{display:flex;justify-content:space-between}
+  .hero h1{font-size:76px}
+  .hero .facts{font-size:16px;color:var(--ink2);font-weight:400;max-width:none}
+  .card .role{margin-top:22px;font-size:11px;letter-spacing:.18em;color:var(--ink3)}
+  .card .role b{display:block;margin-top:4px;font-size:14px;letter-spacing:0;color:var(--ink);font-weight:500}
+  .card h3{margin-top:22px;font-size:21px;line-height:1.45}
+  .q .tag{font-size:12px;letter-spacing:.12em;color:var(--navy-light);margin-bottom:14px}
+  .q blockquote{font-size:26px;font-weight:400}
+  .q .sum{margin-top:16px;font-size:15px;color:#b9c3d8;line-height:1.7}
+  .r p small{display:block;margin-top:6px;font-size:13px;color:var(--ink3)}
+  .lists{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:64px}
+  .lists h4{font-size:13px;letter-spacing:.2em;color:var(--ink3);font-weight:500;padding-bottom:14px;border-bottom:1px solid var(--line)}
+  .lists dl div{display:grid;grid-template-columns:120px 1fr;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px}
+  .lists dt{color:var(--ink3);font-size:14px}
+  .lists dd small{display:block;color:var(--ink3);font-size:13px;margin-top:2px}
+
+  /* white-only override */
+  .kpis{background:#fff;color:var(--ink);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .kpi{border-right-color:var(--line)!important}
+  .kpi .n{color:var(--navy)} .kpi .l{color:var(--ink3)!important}
+  .dark,.gray{background:#fff!important;color:var(--ink)!important;border-top:1px solid var(--line)}
+  .dark .sec-label{color:var(--ink)} .dark .sec-label span{color:var(--ink3)}
+  .dark .arrows span{border-color:var(--line);color:var(--ink3)} .dark .arrows span:last-child{border-color:var(--ink);color:var(--ink)}
+  .q .tag{color:var(--navy)!important} .q .sum{color:var(--ink2)!important} .q .src{color:var(--ink3)}
+  .q .src a{color:var(--navy)!important;border-bottom-color:var(--navy)!important}
+  .hc,.rep .c{background:#fff!important;border:1px solid var(--line)}
+  .shot{background:#fff!important;border:1px solid var(--line)}
+  .notice{background:#fff!important;border:1px solid var(--line);border-left:3px solid var(--navy)}
+  .flow.hi .st:last-child{background:#fff!important;border:1.5px solid var(--navy)!important}
+  .flow.hi .st:last-child .k{color:var(--navy)!important} .flow.hi .st:last-child b{color:var(--navy)!important} .flow.hi .st:last-child small{color:var(--ink3)!important}
+  .path .tag{background:#fff!important;color:var(--navy)!important;border:1.5px solid var(--navy)} .path.down .tag{color:#6b7a99!important;border-color:#6b7a99}
+  .photo{background:#fff!important;border:1px dashed var(--line-strong,#cdd4df)}
+</style>
+</head>
+<body>
+<div class="note">시안 v8 · 문구를 서진 님 사이트 · Kim Duff 방식으로: 섹션은 명사 라벨, 케이스는 역할 + 명사형 제목 + 사실 서술</div>
+
+<nav><div class="wrap">
+  <div class="logo">오승민</div>
+  <div class="menu"><a>Work</a><a>Approach</a><a>Research</a><a>About</a></div>
+  <a class="b2" style="height:40px;padding:0 18px;font-size:14px">이력서 PDF</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <p class="eyebrow">오승민 · Strategy &amp; Financial Research</p>
+  <h1><b>산업 구조</b>를 분석하고<br><b>기업가치</b>로 결론 내는 전략 분석가</h1>
+  <div class="hero-foot">
+    <p class="facts">서강대학교 · Sogang Wise Investment Club 38기 · RCI Financial Credit Risk 인턴 · SG Fenero</p>
+    <div class="btns"><a class="b1">프로젝트 보기 →</a></div>
+  </div>
+</div></header>
+
+<div class="marquee"><div class="wrap">
+  <span class="eyebrow">Experience</span>
+  RCI Financial <i>·</i> SG Fenero <i>·</i> Sogang Wise Investment Club <i>·</i> 한국은행 통화정책 경시대회 <i>·</i> Moon, Sun, Power <i>·</i> 산업분석 스터디 <i>·</i> RCI Financial <i>·</i> SG Fenero
+</div></div>
+
+<section id="work"><div class="wrap">
+  <div class="head-row">
+    <div><p class="sec-label"><span>01</span>SELECTED WORK</p><h2>주요 프로젝트</h2></div>
+    <div class="arrows"><span>←</span><span>→</span></div>
+  </div>
+  <div class="rail">
+    <article class="card">
+      <div class="meta">EQUITY RESEARCH · 태양광<b>한화솔루션</b></div>
+      <div class="role">ROLE<b>단독 작성 · 산업분석, 실적 추정, Valuation</b></div>
+      <h3>미국 태양광 공급망 재편에 따른 실적 추정과 기업가치 평가</h3>
+      <p>AMPC 세액공제, 모듈 ASP, 비중국 공급망 점유율을 P×Q로 분해해 FTM 실적을 추정하고, EV/EBITDA로 목표주가를 산출했습니다.</p>
+      <div class="outcome"><div class="eyebrow">Outcome</div><div>목표주가 43,300원 · BUY<br><span style="font-weight:400;font-size:15px;color:var(--ink2)">상승여력 30% (2026.09 기준)</span></div></div>
+    </article>
+    <article class="card">
+      <div class="meta">INDUSTRY RESEARCH · 조선<b>HD현대중공업</b></div>
+      <div class="role">ROLE<b>스터디 조직·팀장 · 단독 분석</b></div>
+      <h3>고부가 선박 수주잔고 기반 실적 전망과 Valuation</h3>
+      <p>고선가 LNG선 수주분의 매출 인식 시점과 Peer 대비 수익성 개선 속도를 분석하고, Trading Comps와 DCF 모델을 직접 구축했습니다.</p>
+      <div class="outcome"><div class="eyebrow">Outcome</div><div>Comps · DCF 밸류에이션 모델 구축</div></div>
+    </article>
+    <article class="card">
+      <div class="meta">CREDIT RISK · 자동차금융<b>RCI FINANCIAL</b></div>
+      <div class="role">ROLE<b>Credit Risk 인턴 · 프로젝트 일정 관리</b></div>
+      <h3>프랑스 본사 리스크 규정 현지화 프로젝트 관리</h3>
+      <p>부서별 절차서 작성 마일스톤을 수립하고 운영본부 주간 회의를 주관했으며, Local Risk Committee에 진행 현황을 보고했습니다.</p>
+      <div class="outcome"><div class="eyebrow">Outcome</div><div>Local Procedure 7건 기한 내 제정</div></div>
+    </article>
+    <article class="card">
+      <div class="meta">STRATEGY · EDTECH<b>MOON, SUN, POWER</b></div>
+      <div class="role">ROLE<b>프롬프트 엔지니어링 · 서비스 운영</b></div>
+      <h3>AI 맞춤형 문해력 학습 플랫폼 기획·운영</h3>
+      <p>사용자가 입력한 관심사로 지문과 독해 문제를 생성하는 웹 서비스. Few-shot 프롬프트를 설계하고 출시 후 1년간 운영했습니다.</p>
+      <div class="outcome"><div class="eyebrow">Outcome</div><div>월 최대 방문자 9,400명<br><span style="font-weight:400;font-size:15px;color:var(--ink2)">교내 대회 AI/SW 특별상 · 인기상</span></div></div>
+    </article>
+  </div>
+</div></section>
+
+<section class="gray"><div class="wrap">
+  <p class="sec-label"><span>02</span>APPROACH</p>
+  <h2>분석 방식</h2>
+  <div class="rows">
+    <div class="r"><span class="no">01</span><h4>문제 정의<small>DEFINE</small></h4><p>관세 불확실성을 물가 상방 압력과 경기 하방 압력, 두 경로로 분해<small>한국은행 통화정책 경시대회</small></p></div>
+    <div class="r"><span class="no">02</span><h4>가설 수립<small>HYPOTHESIZE</small></h4><p>미국 내 유일한 잉곳-to-모듈 수직계열화를 핵심 투자 가설로 설정<small>한화솔루션 Equity Research</small></p></div>
+    <div class="r"><span class="no">03</span><h4>데이터 검증<small>ANALYZE</small></h4><p>비공시 TPO 계약 단가를 ABS 담보풀 데이터로 역산 (월 약 184달러), PVC 판매량은 회귀식으로 추정<small>한화솔루션 Equity Research</small></p></div>
+    <div class="r"><span class="no">04</span><h4>결론 도출<small>RECOMMEND</small></h4><p>Peer 3사 Forward EV/EBITDA 평균 10.3배 적용, 목표주가 43,300원 · BUY<small>한화솔루션 Equity Research</small></p></div>
+  </div>
+</div></section>
+
+<section class="dark"><div class="wrap">
+  <div class="head-row"><div><p class="sec-label"><span>03</span>RESEARCH</p><h2>리서치 리포트</h2></div><div class="arrows"><span>←</span><span>→</span></div></div>
+  <div class="quotes">
+    <div class="q"><div class="tag">EQUITY · 한화솔루션 · 2026.09 · 18p</div><blockquote>Cellf-made Orange</blockquote><p class="sum">AI 전력 수요 확대와 미국 공급망 규제를 근거로 흑자전환 전망, BUY 의견 제시</p><div class="src"><a>PDF 보기 ↗</a></div></div>
+    <div class="q"><div class="tag">MACRO · 원화(KRW) · 2026.05 · 14p</div><blockquote>애국합시다</blockquote><p class="sum">WGBI 편입 자금과 반도체 수출 호조를 근거로 중장기 원화 강세 전망</p><div class="src"><a>PDF 보기 ↗</a></div></div>
+    <div class="q"><div class="tag">MACRO · 미국 경기 · 2026.03 · 9p</div><blockquote>걱정은 Kevin Warsh가 Wash~</blockquote><p class="sum">금리 인하와 QT 병행 시나리오에서 불 스티프닝 전개, 단기채·중소형주 비중 확대 제시</p><div class="src"><a>PDF 보기 ↗</a></div></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <p class="sec-label"><span>04</span>ABOUT</p>
+  <h2>소개</h2>
+  <div class="lists">
+    <div>
+      <h4>학력 · 활동</h4>
+      <dl>
+        <div><dt>학력</dt><dd>서강대학교<small>유럽문화학과 (독일어권 심화) · 경영학과</small></dd></div>
+        <div><dt>금융학회</dt><dd>Sogang Wise Investment Club 38기<small>Multi-Asset Macro · Equity Research</small></dd></div>
+        <div><dt>스터디</dt><dd>산업분석 스터디 조직 · 팀장<small>2026 여름</small></dd></div>
+      </dl>
+    </div>
+    <div>
+      <h4>경력 · 수상</h4>
+      <dl>
+        <div><dt>인턴</dt><dd>RCI Financial · Credit Risk</dd></div>
+        <div><dt>프로젝트</dt><dd>SG Fenero · Information Memorandum</dd></div>
+        <div><dt>수상</dt><dd>교내 대회 AI/SW 특별상 · 인기상<small>Moon, Sun, Power</small></dd></div>
+        <div><dt>대회</dt><dd>2025 한국은행 통화정책 경시대회</dd></div>
+      </dl>
+    </div>
+  </div>
+</div></section>
+
+<section style="padding-top:40px"><div class="wrap">
+  <p class="sec-label"><span>05</span>CONTACT</p>
+  <div class="contact">
+    <div><h2>연락처</h2><div class="big">email@example.com<br>LinkedIn ↗</div></div>
+    <div class="btns" style="justify-content:flex-end"><a class="b1">이력서 PDF 받기 →</a></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><span>오승민</span><span>© 2026</span></div></footer>
+</body>
+</html>

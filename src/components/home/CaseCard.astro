@@ -1,0 +1,47 @@
+---
+import type { CaseCard } from '../../data/types';
+
+interface Props {
+  card: CaseCard;
+  href: string;
+}
+const { card, href } = Astro.props;
+---
+
+<a class="card" href={href} data-case-card>
+  <p class="meta">{card.category}<b>{card.org}</b></p>
+  <p class="role">ROLE<b>{card.role}</b></p>
+  <h3>{card.title}</h3>
+  <p class="sum">{card.summary}</p>
+  <div class="outcome">
+    <p class="eyebrow">Outcome</p>
+    <p class="val">
+      {card.outcome}
+      {card.outcomeSub && <span>{card.outcomeSub}</span>}
+    </p>
+  </div>
+</a>
+
+<style>
+  .card {
+    flex: 0 0 400px; scroll-snap-align: start; border: 1px solid var(--line); background: #fff;
+    padding: 36px 32px 32px; display: flex; flex-direction: column; min-height: 460px;
+    transition: transform 0.24s, box-shadow 0.24s, border-color 0.24s;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(15, 29, 58, 0.08); border-color: var(--line-strong); }
+  @media (prefers-reduced-motion: reduce) { .card, .card:hover { transition: none; transform: none; } }
+  .meta { font-size: 11px; letter-spacing: 0.18em; color: var(--ink-3); line-height: 1.9; font-weight: 500; }
+  .meta b { display: block; color: var(--ink-2); font-weight: 600; }
+  .role { margin-top: 22px; font-size: 11px; letter-spacing: 0.18em; color: var(--ink-3); }
+  .role b { display: block; margin-top: 4px; font-size: 14px; letter-spacing: 0; color: var(--ink); font-weight: 500; }
+  h3 { margin-top: 22px; font-size: 21px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.45; }
+  .sum { margin-top: 16px; font-size: 14px; color: var(--ink-2); line-height: 1.75; }
+  .outcome { margin-top: auto; padding-top: 22px; border-top: 1px solid var(--line); }
+  .outcome .eyebrow { font-size: 10px; }
+  .val { margin-top: 8px; font-size: 18px; color: var(--navy); font-weight: 600; letter-spacing: -0.01em; line-height: 1.45; }
+  .val span { display: block; font-weight: 400; font-size: 15px; color: var(--ink-2); }
+  @media (max-width: 900px) {
+    .card { flex-basis: 84%; min-height: 0; padding: 28px 22px 24px; }
+    h3 { font-size: 19px; }
+  }
+</style>

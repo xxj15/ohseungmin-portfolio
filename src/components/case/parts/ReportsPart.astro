@@ -1,0 +1,29 @@
+---
+interface Props { items: { meta: string; title: string; question: string; points: string[]; conclusion: string }[] }
+const { items } = Astro.props;
+---
+
+<div class="reps">
+  {items.map((r) => (
+    <article class="rep">
+      <p class="meta">{r.meta}</p>
+      <h3>{r.title}</h3>
+      <p class="q"><b>Q.</b> {r.question}</p>
+      <ul>{r.points.map((p) => <li>{p}</li>)}</ul>
+      <p class="c"><b>결론</b> {r.conclusion}</p>
+    </article>
+  ))}
+</div>
+
+<style>
+  .reps { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .rep { border-top: 2px solid var(--navy); padding-top: 20px; }
+  .meta { font-size: 11px; letter-spacing: 0.15em; color: var(--ink-3); }
+  h3 { margin-top: 8px; font-size: 22px; font-weight: 500; letter-spacing: -0.02em; }
+  .q { margin-top: 14px; font-size: 15px; }
+  .q b, .c b { color: var(--navy); }
+  ul { margin-top: 12px; }
+  li { font-size: 14px; color: var(--ink-2); padding: 7px 0; border-top: 1px solid var(--line); }
+  .c { margin-top: 14px; background: #fff; border: 1px solid var(--line); padding: 14px 16px; font-size: 14px; }
+  @media (max-width: 900px) { .reps { grid-template-columns: 1fr; gap: 36px; } h3 { font-size: 19px; } }
+</style>

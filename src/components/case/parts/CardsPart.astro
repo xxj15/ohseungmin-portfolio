@@ -1,0 +1,27 @@
+---
+import type { Rich } from '../../../data/types';
+interface Props { items: { key: string; title: string; body: Rich; note?: Rich }[] }
+const { items } = Astro.props;
+---
+
+<div class="cards">
+  {items.map((c) => (
+    <div class="card">
+      <p class="key">{c.key}</p>
+      <h3>{c.title}</h3>
+      <p class="body" set:html={c.body} />
+      {c.note && <p class="note" set:html={c.note} />}
+    </div>
+  ))}
+</div>
+
+<style>
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .card { background: #fff; border: 1px solid var(--line); padding: 26px 26px 22px; }
+  .key { font-size: 11px; letter-spacing: 0.18em; color: var(--navy); font-weight: 600; }
+  h3 { margin-top: 8px; font-size: 18px; font-weight: 600; }
+  .body { margin-top: 14px; font-size: 15px; line-height: 1.7; }
+  .body :global(b) { color: var(--navy); font-weight: 700; }
+  .note { margin-top: 10px; font-size: 13px; color: var(--ink-3); line-height: 1.7; }
+  @media (max-width: 900px) { .cards { grid-template-columns: 1fr; gap: 14px; } .card { padding: 22px 20px 18px; } .body { font-size: 14px; } }
+</style>
