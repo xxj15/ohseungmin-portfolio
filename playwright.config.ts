@@ -10,8 +10,8 @@ const BASE_URL = `http://127.0.0.1:${PORT}`;
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
-  // 워커가 너무 많으면 preview 서버·Edge가 몰려 가끔 시간 초과가 난다(로컬 11워커에서 확인). 6으로 묶는다.
-  workers: 6,
+  // 워커가 많으면 Chrome 컨텍스트 생성(browser.newContext)이 가끔 멈춘다(6워커에서 반복 확인). 3으로 묶는다.
+  workers: 3,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   reporter: [['list']],

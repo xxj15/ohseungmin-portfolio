@@ -18,7 +18,7 @@ const { prev, next } = neighbors(cases, c.slug);
 const titleOrg = c.card.org === 'CONFIDENTIAL' ? 'Confidential' : c.org;
 ---
 
-<BaseLayout title={`${titleOrg} · ${c.title} | 오승민`}>
+<BaseLayout title={`${titleOrg} · ${c.title} | 오승민`} description={c.card.summary}>
   <CaseHeader c={c} />
   <KpiStrip kpis={c.kpis} />
   <div class="wrap">

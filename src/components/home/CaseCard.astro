@@ -38,7 +38,8 @@ const { card, href } = Astro.props;
   .sum { margin-top: 16px; font-size: 14px; color: var(--ink-2); line-height: 1.75; }
   .outcome { margin-top: auto; padding-top: 22px; border-top: 1px solid var(--line); }
   .outcome .eyebrow { font-size: 10px; }
-  .val { margin-top: 8px; font-size: 18px; color: var(--navy); font-weight: 600; letter-spacing: -0.01em; line-height: 1.45; }
+  .val { margin-top: 8px; min-height: 2.9em; font-size: 18px; color: var(--navy); font-weight: 600; letter-spacing: -0.01em; line-height: 1.45; }
+  .val span { line-height: 1.45; }
   .val span { display: block; font-weight: 400; font-size: 15px; color: var(--ink-2); }
   @media (max-width: 900px) {
     .card { flex-basis: 84%; min-height: 0; padding: 28px 22px 24px; }

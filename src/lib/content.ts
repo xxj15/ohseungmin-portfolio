@@ -7,7 +7,7 @@ export interface ContactItem { label: string; text: string; href: string }
 export function contactItems(c: Contact): ContactItem[] {
   const items: ContactItem[] = [];
   if (c.email) items.push({ label: 'Email', text: c.email, href: `mailto:${c.email}` });
-  if (c.linkedin) items.push({ label: 'LinkedIn', text: 'LinkedIn ↗', href: c.linkedin });
+  if (c.linkedin) items.push({ label: 'LinkedIn', text: c.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''), href: c.linkedin });
   return items;
 }
 

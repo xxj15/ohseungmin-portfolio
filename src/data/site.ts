@@ -9,7 +9,16 @@ export const site = {
   eyebrow: '오승민 · Strategy & Financial Research',
   heroLines: ['<b>산업 구조</b>를 분석하고', '<b>기업가치</b>로 결론 내는 전략 분석가'] as Rich[],
   heroFacts: '서강대학교 · Sogang Wise Investment Club 38기 · RCI Financial Credit Risk 인턴 · SG Fenero',
-  experience: ['RCI Financial', 'SG Fenero', 'Sogang Wise Investment Club', '한국은행 통화정책 경시대회', 'Moon, Sun, Power', '산업분석 스터디'],
+  /** 경력 띠: 누르면 해당 경험으로 이동. SWIC는 케이스가 둘(한화솔루션 · 매크로)이라 리서치 섹션으로 보낸다. */
+  experience: [
+    { name: 'RCI Financial', href: '/work/rci-financial/' },
+    { name: 'SG Fenero', href: '/work/confidential-im/' },
+    { name: 'Sogang Wise Investment Club', href: '/#research' },
+    { name: '한국은행 통화정책 경시대회', href: '/work/bok-competition/' },
+    { name: 'Moon, Sun, Power', href: '/work/moon-sun-power/' },
+    { name: '산업분석 스터디', href: '/work/hd-hyundai-heavy/' },
+  ] as { name: string; href: string }[],
+  description: '산업 구조를 분석하고 기업가치로 결론 내는 전략 분석가 오승민의 포트폴리오. 산업분석, Valuation, 거시경제 리서치, 신용리스크 실무 케이스 7건.',
   approach: [
     { no: '01', title: '문제 정의', en: 'DEFINE', body: '관세 불확실성을 물가 상방 압력과 경기 하방 압력, 두 경로로 분해', source: '한국은행 통화정책 경시대회' },
     { no: '02', title: '가설 수립', en: 'HYPOTHESIZE', body: '미국 내 유일한 잉곳-to-모듈 수직계열화를 핵심 투자 가설로 설정', source: '한화솔루션 Equity Research' },
@@ -40,5 +49,5 @@ export const site = {
       ],
     },
   ] as AboutGroup[],
-  contact: {} as Contact,
+  contact: { linkedin: 'https://www.linkedin.com/in/seungmin-oh-8ab8a3351/' } as Contact,
 };

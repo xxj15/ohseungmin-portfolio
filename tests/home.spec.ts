@@ -9,13 +9,11 @@ test('히어로', async ({ page }) => {
 
 test('섹션 순서와 제목', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('main h2')).toHaveText(['주요 프로젝트', '분석 방식', '리서치 리포트', '소개']);
+  await expect(page.locator('main h2')).toHaveText(['주요 프로젝트', '분석 방식', '리서치 리포트', '소개', '연락처']);
 });
 
-test('자료 없음 상태: 연락처·이력서·PDF 숨김', async ({ page }) => {
+test('자료 없음 항목 숨김: 이력서·리포트 PDF', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('#contact')).toHaveCount(0);
-  await expect(page.locator('nav a', { hasText: 'Contact' })).toHaveCount(0);
   await expect(page.getByText('이력서 PDF')).toHaveCount(0);
   await expect(page.locator('#research a', { hasText: 'PDF' })).toHaveCount(0);
   await expect(page.locator('#research blockquote')).toHaveText(['Cellf-made Orange', '애국합시다', '걱정은 Kevin Warsh가 Wash~']);

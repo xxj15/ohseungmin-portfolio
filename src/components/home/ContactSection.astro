@@ -14,15 +14,18 @@ const show = hasContact(site.contact);
       <div class="wrap row">
         <div>
           <SectionHead no="05" label="CONTACT" title="연락처" />
-          <ul class="big">
+          <dl class="rows">
             {items.map((item) => (
-              <li>
-                <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel="noopener">
-                  {item.text}
-                </a>
-              </li>
+              <div class="item">
+                <dt>{item.label}</dt>
+                <dd>
+                  <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel="noopener">
+                    {item.text} <span aria-hidden="true">↗</span>
+                  </a>
+                </dd>
+              </div>
             ))}
-          </ul>
+          </dl>
         </div>
         {site.contact.resumePdf && (
           <a class="btn btn--fill" href={withBase(site.contact.resumePdf)}>이력서 PDF 받기 →</a>
@@ -34,5 +37,16 @@ const show = hasContact(site.contact);
 
 <style>
   .row { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; }
-  .big { margin-top: 40px; font-size: 20px; line-height: 2; }
+  .row > div { flex: 1 1 560px; min-width: 0; }
+  .rows { margin-top: 48px; border-top: 1px solid var(--line); max-width: 760px; }
+  .item { display: grid; grid-template-columns: 160px minmax(0, 1fr); padding: 20px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+  dt { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-3); text-transform: uppercase; }
+  dd a { font-size: 20px; letter-spacing: -0.01em; overflow-wrap: anywhere; background: linear-gradient(var(--navy), var(--navy)) 0 100% / 0 1px no-repeat; transition: color 0.2s, background-size 0.24s; }
+  dd a:hover, dd a:focus-visible { color: var(--navy); background-size: 100% 1px; }
+  dd span { color: var(--ink-3); }
+  @media (max-width: 900px) {
+    .rows { margin-top: 28px; }
+    .item { grid-template-columns: 1fr; gap: 6px; padding: 16px 0; }
+    dd a { font-size: 15px; }
+  }
 </style>

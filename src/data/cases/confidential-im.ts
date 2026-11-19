@@ -4,6 +4,7 @@ import type { CaseStudy } from '../types';
 export const confidentialIm: CaseStudy = {
   slug: 'confidential-im',
   no: '05',
+  name: 'Confidential',
   card: {
     category: 'M&A ADVISORY · 미용의료기기',
     org: 'CONFIDENTIAL',

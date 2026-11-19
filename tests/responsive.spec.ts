@@ -14,6 +14,7 @@ for (const path of ['/', ...SLUGS.map((s) => `/work/${s}/`)]) {
 test('360px: 연락처가 생겨 메뉴가 5개가 돼도 넘치지 않음', async ({ page }) => {
   await page.goto('/');
   await page.locator('nav .menu').evaluate((menu) => {
+    if ([...menu.querySelectorAll('a')].some((a) => a.textContent === 'Contact')) return;
     const a = document.createElement('a');
     a.href = '/#contact';
     a.textContent = 'Contact';

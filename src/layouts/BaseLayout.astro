@@ -10,8 +10,9 @@ interface Props {
   title: string;
   ogTitle?: string;
   noindex?: boolean;
+  description?: string;
 }
-const { title, ogTitle, noindex = false } = Astro.props;
+const { title, ogTitle, noindex = false, description = site.description } = Astro.props;
 const resumeHref = site.contact.resumePdf ? withBase(site.contact.resumePdf) : undefined;
 const showResume = !!resumeHref;
 const showContact = hasContact(site.contact);
@@ -27,7 +28,10 @@ const PRETENDARD_CSS =
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <meta name="description" content={description} />
     <meta property="og:title" content={ogTitle ?? title} />
+    <meta property="og:description" content={description} />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <meta property="og:type" content="website" />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />

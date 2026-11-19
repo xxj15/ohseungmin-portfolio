@@ -3,6 +3,7 @@ import type { CaseStudy } from '../types';
 export const swicMacro: CaseStudy = {
   slug: 'swic-macro',
   no: '07',
+  name: 'SWIC Macro',
   card: {
     category: 'MACRO RESEARCH · 금리·외환',
     org: 'SWIC MULTI-ASSET MACRO',

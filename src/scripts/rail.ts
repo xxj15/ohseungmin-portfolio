@@ -15,8 +15,14 @@ export function initRail(root: HTMLElement): void {
 
   const update = (): void => {
     const max = rail.scrollWidth - rail.clientWidth;
-    prev.disabled = rail.scrollLeft <= 1;
-    next.disabled = rail.scrollLeft >= max - 1;
+    const focused = document.activeElement;
+    const atStart = rail.scrollLeft <= 1;
+    const atEnd = rail.scrollLeft >= max - 1;
+    // 누른 버튼이 끝에 닿아 비활성되면 포커스가 body로 빠지지 않게, 비활성 전에 반대 버튼으로 옮긴다
+    if (atEnd && focused === next && !atStart) prev.focus();
+    if (atStart && focused === prev && !atEnd) next.focus();
+    prev.disabled = atStart;
+    next.disabled = atEnd;
   };
 
   prev.addEventListener('click', () => rail.scrollBy({ left: -step(), behavior: reduced ? 'auto' : 'smooth' }));

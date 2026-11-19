@@ -4,7 +4,7 @@ import { casePath, withBase } from '../../lib/paths';
 
 interface Props { prev?: CaseStudy; next?: CaseStudy }
 const { prev, next } = Astro.props;
-const label = (c: CaseStudy) => `${c.card.org === 'CONFIDENTIAL' ? 'Confidential' : c.card.org} · ${c.title}`;
+const label = (c: CaseStudy) => `${c.name} · ${c.title}`;
 ---
 
 <nav class="pager" aria-label="다른 프로젝트">

@@ -41,7 +41,7 @@ test('이전/다음 헬퍼', () => {
   expect(neighbors(cases, 'swic-macro').next).toBeUndefined();
 });
 
-test('site 현재 상태: 자료 없음', () => {
-  expect(site.contact).toEqual({});
+test('site 현재 상태: LinkedIn만 있고 이메일·이력서·리포트 PDF는 없음', () => {
+  expect(site.contact).toEqual({ linkedin: 'https://www.linkedin.com/in/seungmin-oh-8ab8a3351/' });
   expect(site.research.every((r) => r.pdf === undefined)).toBe(true);
 });

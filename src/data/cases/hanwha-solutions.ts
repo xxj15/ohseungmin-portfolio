@@ -3,6 +3,7 @@ import type { CaseStudy } from '../types';
 export const hanwhaSolutions: CaseStudy = {
   slug: 'hanwha-solutions',
   no: '01',
+  name: '한화솔루션',
   card: {
     category: 'EQUITY RESEARCH · 태양광',
     org: '한화솔루션',

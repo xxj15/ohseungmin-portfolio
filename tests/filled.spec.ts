@@ -24,7 +24,7 @@ test('자료를 데이터에 넣으면 연락처·이력서·리포트 링크가
     for (const f of ['src', 'public', 'astro.config.mjs', 'tsconfig.json', 'package.json']) cpSync(join(ROOT, f), join(dir, f), { recursive: true });
     symlinkSync(join(ROOT, 'node_modules'), join(dir, 'node_modules'));
 
-    edit(dir, 'src/data/site.ts', 'contact: {} as Contact', "contact: { email: 'test@example.com', linkedin: 'https://www.linkedin.com/in/test', resumePdf: '/resume.pdf' } as Contact");
+    edit(dir, 'src/data/site.ts', "contact: { linkedin: 'https://www.linkedin.com/in/seungmin-oh-8ab8a3351/' } as Contact", "contact: { email: 'test@example.com', linkedin: 'https://www.linkedin.com/in/test', resumePdf: '/resume.pdf' } as Contact");
     edit(dir, 'src/data/site.ts', "BUY 의견 제시' }", "BUY 의견 제시', pdf: '/reports/hanwha.pdf' }");
     edit(dir, 'src/data/cases/hanwha-solutions.ts', "{ label: 'DELIVERABLE', value: '리포트 18p' }", "{ label: 'DELIVERABLE', value: '리포트 18p', links: [{ text: '리포트 18p (PDF) ↗', href: '/reports/hanwha.pdf' }] }");
     edit(dir, 'src/data/cases/hanwha-solutions.ts', "cover: { org: 'SWIC'", "pdf: '/reports/hanwha.pdf', cover: { org: 'SWIC'");

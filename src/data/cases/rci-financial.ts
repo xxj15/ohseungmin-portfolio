@@ -3,6 +3,7 @@ import type { CaseStudy } from '../types';
 export const rciFinancial: CaseStudy = {
   slug: 'rci-financial',
   no: '03',
+  name: 'RCI Financial',
   card: {
     category: 'CREDIT RISK · 자동차금융',
     org: 'RCI FINANCIAL',

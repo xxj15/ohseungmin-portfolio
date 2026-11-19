@@ -56,6 +56,8 @@ export type CaseSlug =
 export interface CaseStudy {
   slug: CaseSlug;
   no: string;
+  /** 이전/다음 링크 등에 쓰는 짧은 이름 */
+  name: string;
   card: CaseCard;
   eyebrow: string;
   title: string;
