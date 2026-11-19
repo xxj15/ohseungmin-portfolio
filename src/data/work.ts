@@ -94,7 +94,7 @@ export const additionalWork: { slug: CaseSlug; category: string; org: string; su
   {
     slug: 'moon-sun-power',
     category: 'Product Strategy · EdTech',
-    org: 'Moon, Sun, Power',
+    org: 'MoonSunPower',
     subject: '관심사 기반 AI 문해력 학습 서비스 기획 · 프롬프트 설계',
     result: '월 최대 방문자 9,400명, 출시 후 1년 운영',
   },

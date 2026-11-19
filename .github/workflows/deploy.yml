@@ -1,11 +1,12 @@
-# GitHub Pages 배포: main에 push하거나 Actions 탭에서 직접 실행하면 빌드해서 올린다.
-# 저장소 Settings › Pages › Build and deployment › Source를 "GitHub Actions"로 한 번 바꿔 둬야 한다.
-# 사이트 주소: https://xxj15.github.io/ohseungmin-portfolio/ (base는 ASTRO_BASE, 도메인은 astro.config.mjs의 site)
-name: Deploy to GitHub Pages
+# 예전 주소 이동: 사이트 본체는 Vercel(https://ohseungmin.vercel.app)이 main push마다 배포한다.
+# GitHub Pages(https://xxj15.github.io/ohseungmin-portfolio/)에는 redirect/ 폴더만 올려,
+# 예전 주소의 어떤 경로로 들어와도 같은 경로의 새 주소로 보낸다(redirect/404.html 참고).
+name: Redirect old GitHub Pages URL
 
 on:
   push:
     branches: [main]
+    paths: ['redirect/**', '.github/workflows/deploy.yml']
   workflow_dispatch:
 
 permissions:
@@ -13,7 +14,6 @@ permissions:
   pages: write
   id-token: write
 
-# 배포는 한 번에 하나만. 진행 중인 배포는 끊지 않고 다음 실행이 기다린다.
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -25,24 +25,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v5
-        with:
-          node-version: 24
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-        env:
-          ASTRO_BASE: /ohseungmin-portfolio
-
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: dist
+          path: redirect
 
   deploy:
     needs: build

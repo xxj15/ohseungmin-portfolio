@@ -1,6 +1,6 @@
 # 오승민 · Strategy Portfolio
 
-전략 컨설팅 지원용 웹 포트폴리오. 사이트: https://xxj15.github.io/ohseungmin-portfolio/
+전략 컨설팅 지원용 웹 포트폴리오. 사이트: https://ohseungmin.vercel.app/ (예전 주소 https://xxj15.github.io/ohseungmin-portfolio/ 는 같은 경로의 새 주소로 자동 이동)
 
 ## 로컬 실행
 
@@ -37,4 +37,4 @@ npm test         # 빌드 후 Playwright 테스트 (설치된 Chrome 사용)
 
 ## 배포
 
-`main`에 push하면 GitHub Actions가 빌드해서 Pages에 올립니다(`.github/workflows/deploy.yml`).
+`main`에 push하면 Vercel이 빌드해서 https://ohseungmin.vercel.app 에 올립니다(Vercel 프로젝트 `ohseungmin`, 환경 변수 `ASTRO_SITE`). GitHub Pages에는 예전 주소 이동용 `redirect/`만 올라갑니다(`.github/workflows/deploy.yml`).

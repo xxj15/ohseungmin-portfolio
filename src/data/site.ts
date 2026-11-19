@@ -80,7 +80,7 @@ export const site = {
         { title: 'Sogang Wise Investment Club 38기', sub: 'Multi-Asset Macro · Equity Research', meta: '2026' },
         { title: '산업분석 스터디 조직 · 팀장', sub: 'HD현대중공업 분석 · Valuation', meta: '2026 여름' },
         { title: '한국은행 통화정책 경시대회', sub: '무역 · 환율 경로 분석', meta: '2025' },
-        { title: '교내 대회 AI/SW 특별상 · 인기상', sub: 'Moon, Sun, Power' },
+        { title: '서강 융합기술 경진대회 특별상 (AI/SW상 · 인기상)', sub: 'MoonSunPower', meta: '2024.12' },
       ],
     },
   ] as AboutGroup[],

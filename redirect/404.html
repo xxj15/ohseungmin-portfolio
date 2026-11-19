@@ -1,0 +1,33 @@
+<!doctype html>
+<!--
+  예전 주소(https://xxj15.github.io/ohseungmin-portfolio/...)용 이동 페이지.
+  GitHub Pages는 없는 경로에 이 404.html을 보여 주므로, 어떤 경로로 들어와도
+  같은 경로의 새 주소(https://ohseungmin.vercel.app/...)로 보낸다. index.html도 같은 내용.
+-->
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>오승민 포트폴리오 · 주소 이동</title>
+    <link rel="canonical" href="https://ohseungmin.vercel.app/" />
+    <script>
+      (function () {
+        var NEW_ORIGIN = 'https://ohseungmin.vercel.app';
+        var OLD_BASE = '/ohseungmin-portfolio';
+        var path = location.pathname;
+        if (path.indexOf(OLD_BASE) === 0) path = path.slice(OLD_BASE.length);
+        if (path === '' || path.charAt(0) !== '/') path = '/' + path;
+        location.replace(NEW_ORIGIN + path + location.search + location.hash);
+      })();
+    </script>
+    <noscript><meta http-equiv="refresh" content="0; url=https://ohseungmin.vercel.app/" /></noscript>
+    <style>
+      body { margin: 0; min-height: 100vh; display: grid; place-items: center; font-family: -apple-system, 'Apple SD Gothic Neo', sans-serif; color: #142b49; background: #fff; }
+      a { color: #42658f; }
+    </style>
+  </head>
+  <body>
+    <p>주소가 바뀌었습니다 · <a href="https://ohseungmin.vercel.app/">ohseungmin.vercel.app</a></p>
+  </body>
+</html>

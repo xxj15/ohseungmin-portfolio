@@ -40,5 +40,16 @@ test('이전/다음 이름 표기 통일', async ({ page }) => {
   await page.goto('/work/confidential-im/');
   await expect(page.locator('[data-pager-next] b')).toHaveText('RCI Financial · 글로벌 리스크 규정 현지화와 내부통제 프로젝트');
   await page.goto('/work/swic-macro/');
-  await expect(page.locator('[data-pager-next] b')).toHaveText('Moon, Sun, Power · AI 맞춤형 문해력 학습 플랫폼 기획·운영');
+  await expect(page.locator('[data-pager-next] b')).toHaveText('MoonSunPower · AI 맞춤형 문해력 학습 플랫폼 기획·운영');
+});
+
+test('공유 미리보기 대표 이미지(og:image): 절대 주소, 실제 파일', async ({ page, request }) => {
+  for (const path of ['/', '/work/hanwha-solutions/']) {
+    await page.goto(path);
+    const og = await page.locator('meta[property="og:image"]').getAttribute('content');
+    expect(og).toBe('https://ohseungmin.vercel.app/og.png');
+  }
+  const res = await request.get('/og.png');
+  expect(res.status()).toBe(200);
+  expect(res.headers()['content-type']).toContain('image/png');
 });

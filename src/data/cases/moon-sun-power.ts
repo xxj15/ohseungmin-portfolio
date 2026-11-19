@@ -3,30 +3,30 @@ import type { CaseStudy } from '../types';
 export const moonSunPower: CaseStudy = {
   slug: 'moon-sun-power',
   no: '07',
-  name: 'Moon, Sun, Power',
+  name: 'MoonSunPower',
   card: {
     category: 'STRATEGY · EDTECH',
-    org: 'Moon, Sun, Power',
+    org: 'MoonSunPower',
     role: '프롬프트 엔지니어링 · 서비스 운영',
     title: 'AI 맞춤형 문해력 학습 플랫폼 기획·운영',
     summary: '관심사를 입력하면 지문과 독해 문제를 만들어 주는 웹 서비스의 Few-shot 프롬프트 설계, 출시 후 1년간 운영',
     outcome: '월 최대 방문자 9,400명',
-    outcomeSub: '교내 대회 AI/SW 특별상 · 인기상',
+    outcomeSub: '서강 융합기술 경진대회 특별상 (AI/SW상 · 인기상)',
   },
   eyebrow: 'Strategy · EdTech · 개발 3개월 · 운영 1년',
   title: 'AI 맞춤형 문해력 학습 플랫폼 기획·운영',
-  org: 'Moon, Sun, Power',
+  org: 'MoonSunPower',
   facts: [
     { label: 'ROLE', value: '프롬프트 엔지니어링 · 서비스 운영' },
     { label: 'TEAM', value: '팀 프로젝트' },
     { label: 'PERIOD', value: '개발 약 3개월 · 운영 약 1년' },
-    { label: 'AWARD', value: '교내 대회 AI/SW 특별상 · 인기상' },
+    { label: 'AWARD', value: '서강 융합기술 경진대회 특별상 (AI/SW상 · 인기상)' },
   ],
   kpis: [
     { value: '9,400', unit: '명', label: '월 최대 방문자 (Google Analytics)' },
     { value: '3', unit: '개월', label: '개발 기간' },
     { value: '1', unit: '년', label: '출시 후 운영' },
-    { value: '2', unit: '개', label: '교내 대회 수상' },
+    { value: '2', unit: '개', label: '서강 융합기술 경진대회 특별상' },
   ],
   blocks: [
     {
@@ -74,7 +74,7 @@ export const moonSunPower: CaseStudy = {
           exhibit: {
             no: 2,
             title: '서비스 화면 · 지문 읽기와 문제 풀이',
-            figure: { type: 'image', src: '/images/msp-service.png', alt: 'Moon, Sun, Power 지문 · 문제 풀이 화면' },
+            figure: { type: 'image', src: '/images/msp-service.png', alt: 'MoonSunPower 지문 · 문제 풀이 화면' },
           },
         },
       ],
@@ -102,7 +102,7 @@ export const moonSunPower: CaseStudy = {
           kind: 'list',
           items: [
             'Google Analytics 기준 <b>월 최대 방문자 9,400명</b>',
-            '교내 대회 <b>AI/SW 특별상 · 인기상</b> 수상',
+            '2024.12 서강 융합기술 경진대회 <b>특별상 (AI/SW상 · 인기상)</b> 수상',
             '개발 후 제출로 끝내지 않고 <b>약 1년간 직접 운영</b>',
           ],
         },
