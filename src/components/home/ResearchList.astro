@@ -9,7 +9,7 @@ import SectionHead from './SectionHead.astro';
     <SectionHead no="03" label="RESEARCH" title="리서치 리포트" />
     <ul class="quotes">
       {site.research.map((item) => (
-        <li class="q">
+        <li class="q" data-reveal>
           <p class="tag">{item.tag}</p>
           <blockquote>{item.title}</blockquote>
           <p class="sum">{item.summary}</p>

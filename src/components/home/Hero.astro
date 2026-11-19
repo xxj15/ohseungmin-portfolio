@@ -9,7 +9,7 @@ import { withBase } from '../../lib/paths';
     <h1>
       {site.heroLines.map((line, i) => (
         <>
-          <span class="line" set:html={line} />
+          <span class="line" data-hero-line style={`--line:${i}`} set:html={line} />
           {i < site.heroLines.length - 1 && ' '}
         </>
       ))}

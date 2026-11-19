@@ -36,6 +36,16 @@ ul, ol { list-style: none; }
   .h2 { font-size: 34px; margin-top: 20px; }
 }
 
+/* 모션: 숨김 클래스는 스크립트가 붙인다(스크립트가 없으면 아무것도 숨지 않음) */
+.reveal-pending { opacity: 0; transform: translateY(16px); }
+.is-revealing { transition: opacity 480ms var(--ease), transform 480ms var(--ease); transition-delay: var(--reveal-delay, 0ms); }
+html.js [data-hero-line] { animation: hero-in 720ms var(--ease) both; animation-delay: calc(var(--line, 0) * 110ms + 60ms); }
+@keyframes hero-in { from { opacity: 0; transform: translateY(18px); } }
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-hero-line] { animation: none; }
+  .reveal-pending { opacity: 1; transform: none; }
+}
+
 /* 홈 섹션 공통: 흰 배경, 위 얇은 선으로만 구분 */
 .sec { padding: var(--section-pad) 0; scroll-margin-top: var(--nav-height); }
 .sec + .sec { border-top: 1px solid var(--line); }

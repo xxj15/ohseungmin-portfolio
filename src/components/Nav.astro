@@ -16,24 +16,30 @@ const items = [
 ];
 ---
 
-<nav aria-label="주 메뉴">
+<nav aria-label="주 메뉴" data-site-nav>
   <div class="wrap nav-inner">
     <a class="logo" href={withBase('/')}>오승민</a>
     <div class="menu">
-      {items.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+      {items.map((item) => <a href={withBase(item.href)} data-nav-link={item.href.replace('/#', '')}>{item.label}</a>)}
     </div>
     <div class="nav-end">
       {showResume && resumeHref && <a class="btn btn--line btn--sm" href={resumeHref}>이력서 PDF</a>}
     </div>
   </div>
+  <span class="progress" data-progress aria-hidden="true"></span>
 </nav>
 
 <style>
-  nav { position: sticky; top: 0; z-index: 10; background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(12px); }
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+  nav.is-scrolled { border-bottom-color: var(--line); }
+  .progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--navy); transform: scaleX(0); transform-origin: left; pointer-events: none; }
   .nav-inner { height: var(--nav-height); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
   .logo { font-size: 19px; font-weight: 600; letter-spacing: -0.02em; }
-  .menu { display: flex; gap: 34px; font-size: 14px; color: var(--ink-2); }
+  .menu { display: flex; gap: 34px; font-size: 14px; color: var(--ink-2); align-self: stretch; }
+  .menu a { position: relative; display: flex; align-items: center; transition: color 0.2s; }
   .menu a:hover { color: var(--ink); }
+  .menu a[aria-current='location'] { color: var(--navy); font-weight: 600; }
+  .menu a[aria-current='location']::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--navy); }
   .nav-end { min-width: 110px; display: flex; justify-content: flex-end; }
   @media (max-width: 900px) {
     .nav-inner { height: 60px; }

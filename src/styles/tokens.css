@@ -18,4 +18,5 @@
   --gutter-mobile: 20px;
   --nav-height: 76px;
   --section-pad: 120px;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
 }

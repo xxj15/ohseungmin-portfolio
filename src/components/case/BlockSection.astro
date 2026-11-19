@@ -7,7 +7,7 @@ const { block, index } = Astro.props;
 const no = String(index + 1).padStart(2, '0');
 ---
 
-<section class="blk" data-block>
+<section class="blk" data-block data-reveal>
   <div class="lab">
     <p>{no} {block.label}</p>
     <h2>{block.title}</h2>

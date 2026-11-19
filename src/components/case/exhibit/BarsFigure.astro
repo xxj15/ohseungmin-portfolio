@@ -5,10 +5,10 @@ const { figure } = Astro.props;
 const max = Math.max(...figure.bars.map((b) => b.value));
 ---
 
-<div class="chart">
+<div class="chart" data-chart>
   <div class="plot">
-    {figure.bars.map((b) => (
-      <div class:list={['bar', { hi: b.highlight }]} style={`height:${((b.value / max) * 100).toFixed(1)}%`}>
+    {figure.bars.map((b, i) => (
+      <div class:list={['bar', { hi: b.highlight }]} style={`height:${((b.value / max) * 100).toFixed(1)}%;--i:${i}`}>
         <span data-bar-value>{b.display}</span>
       </div>
     ))}
@@ -21,6 +21,10 @@ const max = Math.max(...figure.bars.map((b) => b.value));
   .plot { display: flex; align-items: flex-end; gap: 28px; height: 200px; padding: 0 8px; border-bottom: 1px solid var(--ink); }
   .bar { flex: 1; background: var(--navy-tint); position: relative; }
   .bar.hi { background: var(--navy); }
+  .chart:global(.chart-pending) .bar { height: 0 !important; }
+  .chart:global(.chart-pending) .bar span { opacity: 0; }
+  .chart:global(.is-drawing) .bar { transition: height 800ms var(--ease) calc(var(--i) * 110ms); }
+  .chart:global(.is-drawing) .bar span { transition: opacity 300ms ease calc(var(--i) * 110ms + 600ms); }
   .bar span { position: absolute; top: -24px; left: 0; right: 0; text-align: center; font-size: 13px; font-weight: 600; }
   .ax { display: flex; gap: 28px; padding: 8px 8px 0; font-size: 12px; color: var(--ink-3); }
   .ax span { flex: 1; text-align: center; }

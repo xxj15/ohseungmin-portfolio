@@ -8,7 +8,7 @@ import SectionHead from './SectionHead.astro';
     <SectionHead no="02" label="APPROACH" title="분석 방식" />
     <ol class="rows">
       {site.approach.map((row) => (
-        <li class="row">
+        <li class="row" data-reveal>
           <span class="no">{row.no}</span>
           <h3>{row.title}<small>{row.en}</small></h3>
           <p><span set:html={row.body} /><small>{row.source}</small></p>

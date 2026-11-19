@@ -4,11 +4,11 @@ interface Props { figure: Extract<Figure, { type: 'hbars' }> }
 const { figure } = Astro.props;
 ---
 
-<div class="hbars">
-  {figure.rows.map((r) => (
+<div class="hbars" data-chart>
+  {figure.rows.map((r, i) => (
     <div class:list={['row', { total: r.total }]}>
       <span class="label">{r.label}</span>
-      <div class="track"><div class:list={['bar', r.tone]} style={`width:${r.width}%;margin-left:${r.offset ?? 0}%`}></div></div>
+      <div class="track"><div class:list={['bar', r.tone]} style={`width:${r.width}%;margin-left:${r.offset ?? 0}%;--i:${i}`}></div></div>
       <span class="v">{r.value}</span>
     </div>
   ))}
@@ -28,6 +28,11 @@ const { figure } = Astro.props;
   .bar.pos { background: var(--navy); }
   .bar.neg { background: #c9d1df; }
   .bar.base { background: var(--navy-tint); }
+  .bar { transform-origin: left; }
+  .hbars:global(.chart-pending) .bar { transform: scaleX(0); }
+  .hbars:global(.chart-pending) .v { opacity: 0; }
+  .hbars:global(.is-drawing) .bar { transition: transform 700ms var(--ease) calc(var(--i) * 130ms); }
+  .hbars:global(.is-drawing) .v { transition: opacity 300ms ease 700ms; }
   .v { text-align: right; font-weight: 600; }
   .row.total { border-top: 1px solid var(--ink); margin-top: 6px; padding-top: 14px; }
   .row.total .v, .result .v { color: var(--navy); font-size: 18px; }

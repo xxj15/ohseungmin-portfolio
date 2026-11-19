@@ -26,6 +26,7 @@ const PRETENDARD_CSS =
 <html lang="ko">
   <head>
     <meta charset="utf-8" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -44,5 +45,10 @@ const PRETENDARD_CSS =
       <slot />
     </main>
     <Footer />
+    <script>
+      import '../scripts/nav';
+      import '../scripts/reveal';
+      import '../scripts/countup';
+    </script>
   </body>
 </html>

@@ -8,7 +8,7 @@ interface Props {
 const { card, href } = Astro.props;
 ---
 
-<a class="card" href={href} data-case-card>
+<a class="card" href={href} data-case-card data-reveal>
   <p class="meta">{card.category}<b>{card.org}</b></p>
   <p class="role">ROLE<b>{card.role}</b></p>
   <h3>{card.title}</h3>

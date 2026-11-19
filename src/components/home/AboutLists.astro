@@ -8,7 +8,7 @@ import SectionHead from './SectionHead.astro';
     <SectionHead no="04" label="ABOUT" title="소개" />
     <div class="lists">
       {site.about.map((group) => (
-        <div>
+        <div data-reveal>
           <h3>{group.heading}</h3>
           <dl>
             {group.rows.map((row) => (

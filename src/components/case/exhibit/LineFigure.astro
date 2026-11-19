@@ -17,7 +17,7 @@ const NAVY = '#1b3a78';
 const MUTED = '#b7c0d1';
 ---
 
-<div class="line">
+<div class="line" data-chart>
   <div class="plot">
   <svg viewBox={`0 0 ${W} ${H + 6}`} role="img" aria-label={figure.series.map((s) => `${s.name}: ${s.values.join(figure.unit + ', ')}${figure.unit}`).join(' / ')}>
     <line x1={PAD} x2={W - PAD} y1={y(0)} y2={y(0)} stroke="#cdd4df" stroke-dasharray="3 3" />
@@ -29,7 +29,7 @@ const MUTED = '#b7c0d1';
     ))}
     {figure.series.filter((s) => !s.muted).map((s) => (
       <g>
-        <polyline points={points(s.values)} fill="none" stroke={NAVY} stroke-width="2.5" />
+        <polyline class="draw" pathLength="1" points={points(s.values)} fill="none" stroke={NAVY} stroke-width="2.5" />
         {s.values.map((v, i) => <circle cx={x(i)} cy={y(v)} r="4" fill={NAVY} />)}
         {s.values.map((v, i) => (
           <text x={x(i)} y={y(v) - 11} font-size="12" font-weight="600" fill={NAVY} text-anchor="middle" data-point-label>{`${v}${figure.unit}`}</text>
@@ -48,6 +48,10 @@ const MUTED = '#b7c0d1';
   .line { margin-top: 28px; }
   svg { width: 100%; height: auto; display: block; font-family: inherit; }
   .plot { overflow-x: auto; }
+  .line:global(.chart-pending) .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+  .line:global(.chart-pending) circle, .line:global(.chart-pending) [data-point-label], .line:global(.chart-pending) polyline:not(.draw) { opacity: 0; }
+  .line:global(.is-drawing) .draw { stroke-dasharray: 1; transition: stroke-dashoffset 1100ms var(--ease); }
+  .line:global(.is-drawing) circle, .line:global(.is-drawing) [data-point-label], .line:global(.is-drawing) polyline:not(.draw) { transition: opacity 400ms ease 700ms; }
   @media (max-width: 900px) {
     svg { min-width: 560px; }
     svg :global(text) { font-size: 15px; }

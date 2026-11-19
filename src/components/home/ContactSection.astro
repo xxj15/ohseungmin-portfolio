@@ -16,7 +16,7 @@ const show = hasContact(site.contact);
           <SectionHead no="05" label="CONTACT" title="연락처" />
           <dl class="rows">
             {items.map((item) => (
-              <div class="item">
+              <div class="item" data-reveal>
                 <dt>{item.label}</dt>
                 <dd>
                   <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel="noopener">
